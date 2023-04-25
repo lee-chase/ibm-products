@@ -50,7 +50,7 @@ module.exports = {
   reporters: ['default'],
   setupFiles: [require.resolve('./setup/setupFiles')],
   setupFilesAfterEnv: [require.resolve('./setup/setupFilesAfterEnv')],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
+  snapshotSerializers: [],
   testEnvironment: 'jsdom',
   testMatch: [
     '<rootDir>/**/__tests__/**/*.js?(x)',
@@ -71,7 +71,6 @@ module.exports = {
     '/lib/',
     '/build/',
     'e2e',
-    'examples',
     'templates',
     '/umd/',
   ],
