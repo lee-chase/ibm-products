@@ -19,6 +19,8 @@ module.exports = () => ({
           browsers: ['extends browserslist-config-carbon'],
           node: '16',
         },
+        loose: true,
+        shippedProposals: true,
       },
     ],
     '@babel/preset-react',
