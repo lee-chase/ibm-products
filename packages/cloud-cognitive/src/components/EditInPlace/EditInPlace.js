@@ -19,14 +19,14 @@ import {
 import { pkg, carbon } from '../../settings';
 import { getDevtoolsProps } from '../../global/js/utils/devtools';
 
-const componentName = 'InlineEditV2';
-const blockClass = `${pkg.prefix}--inline-edit-v2`;
+const componentName = 'EditInPlace';
+const blockClass = `${pkg.prefix}--edit-in-place`;
 
 const defaults = {
   size: 'sm',
 };
 
-export let InlineEditV2 = forwardRef(
+export let EditInPlace = forwardRef(
   (
     {
       cancelLabel,
@@ -238,9 +238,9 @@ export let InlineEditV2 = forwardRef(
   }
 );
 
-InlineEditV2 = pkg.checkComponentEnabled(InlineEditV2, componentName);
+EditInPlace = pkg.checkComponentEnabled(EditInPlace, componentName);
 
-InlineEditV2.displayName = componentName;
+EditInPlace.displayName = componentName;
 
 export const deprecatedProps = {
   /**
@@ -250,7 +250,7 @@ export const deprecatedProps = {
   invalidText: PropTypes.string,
 };
 
-InlineEditV2.propTypes = {
+EditInPlace.propTypes = {
   /**
    * label for cancel button
    */
@@ -324,7 +324,7 @@ InlineEditV2.propTypes = {
   ...deprecatedProps,
 };
 
-InlineEditV2.defaultProps = {
+EditInPlace.defaultProps = {
   invalid: false,
   invalidLabel: '',
   // readOnly: false,
