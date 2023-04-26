@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { SkeletonText } from '@carbon/react';
-import { InlineEdit } from '../';
+import { EditInPlace } from '../';
 
 /**
  *
@@ -47,19 +47,17 @@ export const PageHeaderTitle = ({ blockClass, hasBreadcrumbRow, title }) => {
         {loading ? (
           <SkeletonText className={`${blockClass}__title-skeleton`} />
         ) : isEditable ? (
-          <InlineEdit
-            v1
-            hideLabel
+          <EditInPlace
             value={text}
-            {...{
-              editDescription,
-              onChange,
-              onSave,
-              labelText: editableLabel,
-              revertDescription,
-              saveDescription,
-            }}
-            buttonTooltipPosition="bottom"
+            cancelLabel={revertDescription}
+            editLabel={editDescription}
+            saveLabel={saveDescription}
+            labelText={editableLabel}
+            onChange={onChange}
+            // buttonTooltipPosition="bottom"
+            onSave={onSave}
+            size="md"
+            inheritTypography
             {...rest}
           />
         ) : (
@@ -87,7 +85,7 @@ export const PageHeaderTitle = ({ blockClass, hasBreadcrumbRow, title }) => {
   );
 };
 
-export const inlineEditRequired = ({ onSave }) => !!onSave;
+export const editInPlaceRequired = ({ onSave }) => !!onSave;
 
 PageHeaderTitle.propTypes = {
   // passed from page header
@@ -124,13 +122,13 @@ PageHeaderTitle.propTypes = {
       loading: PropTypes.bool,
 
       // inline edit version properties
-      editDescription: PropTypes.string.isRequired.if(inlineEditRequired),
-      editableLabel: PropTypes.string.isRequired.if(inlineEditRequired),
-      id: PropTypes.string.isRequired.if(inlineEditRequired),
+      editDescription: PropTypes.string.isRequired.if(editInPlaceRequired),
+      editableLabel: PropTypes.string.isRequired.if(editInPlaceRequired),
+      id: PropTypes.string.isRequired.if(editInPlaceRequired),
       onChange: PropTypes.func,
       onSave: PropTypes.func,
-      revertDescription: PropTypes.string.isRequired.if(inlineEditRequired),
-      saveDescription: PropTypes.string.isRequired.if(inlineEditRequired),
+      revertDescription: PropTypes.string.isRequired.if(editInPlaceRequired),
+      saveDescription: PropTypes.string.isRequired.if(editInPlaceRequired),
       // Update docgen if changed
     }),
     PropTypes.string,

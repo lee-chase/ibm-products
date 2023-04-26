@@ -347,7 +347,7 @@ assets:
       - type: storybook
         name: Storybook
         action: link
-        url: https://v11-carbon-for-ibm-products.netlify.app/?path=/story/ibm-products-patterns-edit-and-update-inlineedit
+        url: https://v11-carbon-for-ibm-products.netlify.app/?path=/story/ibm-products-patterns-edit-and-update-editinplace
     tags:
       - input-control
   modified-tabs:
