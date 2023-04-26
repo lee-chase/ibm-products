@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { SkeletonText } from '@carbon/react';
-import { InlineEdit } from '../';
+import { EditInPlace } from '../';
 
 /**
  *
@@ -47,9 +47,7 @@ export const PageHeaderTitle = ({ blockClass, hasBreadcrumbRow, title }) => {
         {loading ? (
           <SkeletonText className={`${blockClass}__title-skeleton`} />
         ) : isEditable ? (
-          <InlineEdit
-            buttonTooltipDirection="bottom"
-            v2
+          <EditInPlace
             value={text}
             cancelLabel={revertDescription}
             editLabel={editDescription}
@@ -87,7 +85,7 @@ export const PageHeaderTitle = ({ blockClass, hasBreadcrumbRow, title }) => {
   );
 };
 
-export const InlineEditRequired = ({ onSave }) => !!onSave;
+export const editInPlaceRequired = ({ onSave }) => !!onSave;
 
 PageHeaderTitle.propTypes = {
   // passed from page header
@@ -124,13 +122,13 @@ PageHeaderTitle.propTypes = {
       loading: PropTypes.bool,
 
       // inline edit version properties
-      editDescription: PropTypes.string.isRequired.if(InlineEditRequired),
-      editableLabel: PropTypes.string.isRequired.if(InlineEditRequired),
-      id: PropTypes.string.isRequired.if(InlineEditRequired),
+      editDescription: PropTypes.string.isRequired.if(editInPlaceRequired),
+      editableLabel: PropTypes.string.isRequired.if(editInPlaceRequired),
+      id: PropTypes.string.isRequired.if(editInPlaceRequired),
       onChange: PropTypes.func,
       onSave: PropTypes.func,
-      revertDescription: PropTypes.string.isRequired.if(InlineEditRequired),
-      saveDescription: PropTypes.string.isRequired.if(InlineEditRequired),
+      revertDescription: PropTypes.string.isRequired.if(editInPlaceRequired),
+      saveDescription: PropTypes.string.isRequired.if(editInPlaceRequired),
       // Update docgen if changed
     }),
     PropTypes.string,
