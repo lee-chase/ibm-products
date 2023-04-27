@@ -24,7 +24,7 @@ export const PageHeaderTitle = ({ blockClass, hasBreadcrumbRow, title }) => {
     onSave,
     editDescription,
     editableLabel,
-    revertDescription,
+    cancelDescription,
     saveDescription,
     ...rest
   } = title;
@@ -48,15 +48,14 @@ export const PageHeaderTitle = ({ blockClass, hasBreadcrumbRow, title }) => {
           <SkeletonText className={`${blockClass}__title-skeleton`} />
         ) : isEditable ? (
           <InlineEdit
-            buttonTooltipDirection="bottom"
+            tooltipAlignment="bottom"
             v2
             value={text}
-            cancelLabel={revertDescription}
+            cancelLabel={cancelDescription}
             editLabel={editDescription}
             saveLabel={saveDescription}
             labelText={editableLabel}
             onChange={onChange}
-            // buttonTooltipPosition="bottom"
             onSave={onSave}
             size="md"
             inheritTypography
@@ -109,7 +108,7 @@ PageHeaderTitle.propTypes = {
    *    - onSave: function to process a confirmed change
    *    - editDescription: description for edit button
    *    - editableLabel: label for edit required if onSave supplied
-   *    - revertDescription: description for edit revert button
+   *    - cancelDescription: description for edit revert button
    *    - saveDescription: description for edit save button
    * - Object containing user defined contents. These must fit within the area defined for the title in both main part of the header and the breadcrumb.
    *    - content: title or name of current location shown in main part of page header
@@ -129,7 +128,7 @@ PageHeaderTitle.propTypes = {
       id: PropTypes.string.isRequired.if(InlineEditRequired),
       onChange: PropTypes.func,
       onSave: PropTypes.func,
-      revertDescription: PropTypes.string.isRequired.if(InlineEditRequired),
+      cancelDescription: PropTypes.string.isRequired.if(InlineEditRequired),
       saveDescription: PropTypes.string.isRequired.if(InlineEditRequired),
       // Update docgen if changed
     }),
