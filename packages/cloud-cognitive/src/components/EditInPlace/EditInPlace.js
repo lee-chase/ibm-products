@@ -30,8 +30,6 @@ const defaults = {
 export let EditInPlace = forwardRef(
   (
     {
-      buttonTooltipAlignment,
-      buttonTooltipPosition,
       cancelLabel,
       editAlwaysVisible,
       editLabel,
@@ -280,7 +278,8 @@ const alignPropType = PropTypes.oneOf([
 EditInPlace.propTypes = {
   /**
    * label for cancel button
-   */ cancelLabel: PropTypes.string.isRequired,
+   */
+  cancelLabel: PropTypes.string.isRequired,
   /**
    * By default the edit icon is shown on hover only.
    */
