@@ -9,7 +9,6 @@ import React, { useState } from 'react';
 // ----------------------------------------------------
 
 import '../config'; // must come before @carbon/ibm-products... imports
-
 import { AboutModal } from '@carbon/ibm-products';
 import { Button, Link } from '@carbon/react';
 
@@ -22,7 +21,6 @@ import './_example.scss';
 
 export const Example = () => {
   const [isOpen, setIsOpen] = useState(true);
-
   const handleOpenModalClick = () => {
     setIsOpen(true);
   };
@@ -42,37 +40,31 @@ export const Example = () => {
         open={isOpen}
         additionalInfo={[
           {
-            content: '1.3.41',
-            label: 'Version number',
-          },
-          {
             content: (
               <>
                 <img
                   alt="Grafana"
-                  className="about-modal-stories--tech-logo"
+                  className="about-modal__tech-logo"
                   src={grafanaLogo}
                 />
                 <img
                   alt="Ansible"
-                  className="about-modal-stories--tech-logo"
+                  className="about-modal__tech-logo"
                   src={ansibleLogo}
                 />
                 <img
                   alt="JavaScript"
-                  className="about-modal-stories--tech-logo"
+                  className="about-modal__tech-logo"
                   src={jsLogo}
                 />
               </>
             ),
-            label: 'Technologies used',
+            label: 'Powered by',
           },
         ]}
         closeIconDescription="Close"
-        content={
-          <>This is example content for an About Modal with all props set.</>
-        }
-        copyrightText={<>Copyright © 2020 IBM corporation</>}
+        version={'Version 0.0.0'}
+        copyrightText={'Copyright © 2020 IBM corporation'}
         legalText="This Web site contains proprietary notices and copyright information, the terms of which must be observed and followed. Please see the tab entitled “Copyright and trademark information” for related information."
         links={[
           <Link key="link1" href="https://www.carbondesignsystem.com">

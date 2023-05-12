@@ -1,6 +1,11 @@
-@use '@carbon/react/scss/spacing' as *;
+@use "@carbon/react/scss/spacing" as *;
 
-.about-modal-stories--tech-logo {
+@use "@carbon/ibm-products/scss/index-without-carbon" with (
+  // first import sets this
+  $pkg-prefix: "tst"
+);
+
+.about-modal__tech-logo {
   width: 2.25rem;
   height: 2.25rem;
   margin-right: $spacing-05;

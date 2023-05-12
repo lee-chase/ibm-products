@@ -1,6 +1,6 @@
 {
   "name": "CreateTearsheetNarrow-component-example",
-  "description": "An example showing use of the AboutModal component from the @carbon/ibm-products component library.",
+  "description": "An example showing use of the TearsheetNarrow component from the @carbon/ibm-products component library.",
   "keywords": [
     "carbon",
     "ibm",
