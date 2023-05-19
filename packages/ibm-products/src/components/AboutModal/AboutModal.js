@@ -6,7 +6,7 @@
  */
 
 // Import portions of React that are needed.
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useResizeObserver } from '../../global/js/hooks/useResizeObserver';
 
 // Other standard imports.
@@ -64,7 +64,7 @@ export let AboutModal = React.forwardRef(
     const contentRef = useRef();
     const contentId = uuidv4();
 
-    const handleResize = () => {
+    const handleResize = useCallback(() => {
       setHasScrollingContent(
         // if our scroll height exceeds the client height enable scrolling
         bodyRef.current.clientHeight <
@@ -73,7 +73,7 @@ export let AboutModal = React.forwardRef(
               bodyRef.current.scrollHeight - 32
             : bodyRef.current.scrollHeight)
       );
-    };
+    }, [hasScrollingContent]);
 
     // We can't add a ref directly to the ModalBody, so track it in a ref
     // as the parent of the current bodyRef element
@@ -82,7 +82,7 @@ export let AboutModal = React.forwardRef(
     }, [bodyRef]);
 
     // Detect resize of the ModalBody to recalculate whether scrolling is enabled
-    useResizeObserver(bodyRef, { callback: handleResize });
+    useResizeObserver(bodyRef, handleResize);
 
     return (
       <ComposedModal

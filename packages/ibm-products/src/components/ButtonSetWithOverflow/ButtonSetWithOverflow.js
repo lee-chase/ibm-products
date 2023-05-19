@@ -5,7 +5,7 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import cx from 'classnames';
@@ -43,7 +43,7 @@ export const ButtonSetWithOverflow = ({
    * ButtonSet is used, once this is no longer the case it switches to a ButtonMenu.
    *
    */
-  const checkFullyVisibleItems = () => {
+  const checkFullyVisibleItems = useCallback(() => {
     const spaceAvailable = spaceAvailableRef.current?.offsetWidth;
     let newShowAsOverflow = true;
 
@@ -81,7 +81,7 @@ export const ButtonSetWithOverflow = ({
     }
 
     setShowAsOverflow(newShowAsOverflow);
-  };
+  }, [carbonPrefix, onWidthChange]);
 
   useEffect(() => {
     checkFullyVisibleItems();
@@ -137,7 +137,7 @@ export const ButtonSetWithOverflow = ({
   useResizeObserver(sizingContainerRefCombo, {
     callback: checkFullyVisibleItems,
   });
-  useResizeObserver(spaceAvailableRef, { callback: checkFullyVisibleItems });
+  useResizeObserver(spaceAvailableRef, checkFullyVisibleItems);
 
   return (
     <div

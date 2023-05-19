@@ -5,7 +5,7 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { spacing10, baseFontSize } from '@carbon/layout';
 import cx from 'classnames';
@@ -109,17 +109,26 @@ export let PageHeader = React.forwardRef(
     const hasBreadcrumbRow = !!breadcrumbs || !!actionBarItems;
 
     // utility functions
-    const checkUpdateVerticalSpace = function () {
-      return utilCheckUpdateVerticalSpace(
-        headerRef,
-        offsetTopMeasuringRef,
-        navigation,
+    const checkUpdateVerticalSpace = useCallback(
+      function () {
+        return utilCheckUpdateVerticalSpace(
+          headerRef,
+          offsetTopMeasuringRef,
+          navigation,
+          enableBreadcrumbScroll,
+          hasActionBar,
+          widthIsNarrow,
+          setMetrics
+        );
+      },
+      [
         enableBreadcrumbScroll,
         hasActionBar,
+        headerRef,
+        navigation,
         widthIsNarrow,
-        setMetrics
-      );
-    };
+      ]
+    );
 
     // NOTE: The buffer is used to add space between the bottom of the header and the last content
     // Not pre-collapsed and (subtitle or children)
@@ -162,19 +171,19 @@ export let PageHeader = React.forwardRef(
     };
 
     /* istanbul ignore next */
-    const handleResizeActionBarColumn = ({ width }) => {
+    const handleResizeActionBarColumn = useCallback(({ width }) => {
       /* don't know how to test resize */
       /* istanbul ignore next */
       setActionBarColumnWidth(width);
-    };
+    }, []);
 
     /* istanbul ignore next */
-    const handleResize = () => {
+    const handleResize = useCallback(() => {
       // receives width and height parameters if needed
       /* don't know how to test resize */
       /* istanbul ignore next */
       checkUpdateVerticalSpace();
-    };
+    }, [checkUpdateVerticalSpace]);
 
     const handleCollapseToggle = () => {
       utilSetCollapsed(
@@ -448,11 +457,9 @@ export let PageHeader = React.forwardRef(
       }
     }, [collapseHeader, metrics.headerOffset, metrics.headerTopValue]);
 
-    useResizeObserver(sizingContainerRef, {
-      callback: handleResizeActionBarColumn,
-    });
+    useResizeObserver(sizingContainerRef, handleResizeActionBarColumn);
 
-    useResizeObserver(headerRef, { callback: handleResize });
+    useResizeObserver(headerRef, handleResize);
 
     // Determine what form of title to display in the breadcrumb
     let breadcrumbItemForTitle = utilGetBreadcrumbItemForTitle(

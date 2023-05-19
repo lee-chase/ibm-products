@@ -6,7 +6,7 @@
 //
 
 // Import portions of React that are needed.
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 // Other standard imports.
 import PropTypes from 'prop-types';
@@ -170,7 +170,7 @@ export let BreadcrumbWithOverflow = ({
     setDisplayedBreadcrumbItems(newDisplayedBreadcrumbItems);
   }, [breadcrumbs, displayCount]);
 
-  const checkFullyVisibleBreadcrumbItems = () => {
+  const checkFullyVisibleBreadcrumbItems = useCallback(() => {
     const displayItemIndex = (itemCount, index) => {
       // In this data set the overflow measuring item is [0]
       // so the first displayItem in the list is [1]
@@ -255,7 +255,7 @@ export let BreadcrumbWithOverflow = ({
         setDisplayCount(maxVisible ? Math.min(willFit, maxVisible) : willFit);
       }
     }
-  };
+  }, [carbonPrefix, maxVisible]);
 
   useEffect(() => {
     checkFullyVisibleBreadcrumbItems();
@@ -263,10 +263,10 @@ export let BreadcrumbWithOverflow = ({
   }, [hiddenSizingItems, maxVisible]);
 
   /* istanbul ignore next */ // not sure how to test resize
-  const handleResize = () => {
+  const handleResize = useCallback(() => {
     /* istanbul ignore next */ // not sure how to test resize
     checkFullyVisibleBreadcrumbItems();
-  };
+  }, [checkFullyVisibleBreadcrumbItems]);
 
   let backItem = breadcrumbs[breadcrumbs.length - 1];
   /* istanbul ignore if */ // not sure how to test media queries
@@ -275,9 +275,9 @@ export let BreadcrumbWithOverflow = ({
   }
 
   // container resize
-  useResizeObserver(sizingContainerRef, { callback: handleResize });
+  useResizeObserver(sizingContainerRef, handleResize);
   // item resize
-  useResizeObserver(breadcrumbItemWithOverflow, { callback: handleResize });
+  useResizeObserver(breadcrumbItemWithOverflow, handleResize);
 
   return (
     <div

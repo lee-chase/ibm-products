@@ -6,7 +6,7 @@
  */
 
 // Import portions of React that are needed.
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Other standard imports.
@@ -169,7 +169,7 @@ export let SidePanel = React.forwardRef(
     }, [labelText, title]);
 
     /* istanbul ignore next */
-    const handleResize = ({ height }) => {
+    const handleResize = useCallback(({ height }) => {
       setPanelHeight(height);
       const sidePanelOuter = document.querySelector(`#${blockClass}-outer`);
       const actionsContainer = getActionsContainerElement();
@@ -179,7 +179,7 @@ export let SidePanel = React.forwardRef(
         `--${blockClass}--content-bottom-padding`,
         actionsHeight
       );
-    };
+    }, []);
 
     const getActionsContainerElement = () => {
       const sidePanelOuter = document.querySelector(`#${blockClass}-outer`);
@@ -686,7 +686,7 @@ export let SidePanel = React.forwardRef(
 
     const contentRef = ref || sidePanelRef;
 
-    useResizeObserver(contentRef, { callback: handleResize });
+    useResizeObserver(contentRef, handleResize);
 
     return (
       <AnimatePresence>

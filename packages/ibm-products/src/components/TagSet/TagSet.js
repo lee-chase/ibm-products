@@ -201,25 +201,25 @@ export let TagSet = React.forwardRef(
 
     /* don't know how to test resize */
     /* istanbul ignore next */
-    const handleResize = () => {
+    const handleResize = useCallback(() => {
       /* istanbul ignore next */ // not sure how to test resize
       checkFullyVisibleTags();
-    };
+    }, [checkFullyVisibleTags]);
 
     /* don't know how to test resize */
     /* istanbul ignore next */
-    const handleSizerTagsResize = () => {
+    const handleSizerTagsResize = useCallback(() => {
       /* istanbul ignore next */ // not sure how to test resize
       checkFullyVisibleTags();
-    };
+    }, [checkFullyVisibleTags]);
 
-    const handleModalClose = () => {
+    const handleModalClose = useCallback(() => {
       setShowAllModalOpen(false);
-    };
+    }, []);
 
-    useResizeObserver(sizingContainerRef, { callback: handleSizerTagsResize });
+    useResizeObserver(sizingContainerRef, handleSizerTagsResize);
 
-    useResizeObserver(tagSetRef, { callback: handleResize });
+    useResizeObserver(tagSetRef, handleResize);
 
     return (
       <div

@@ -6,7 +6,7 @@
 //
 
 // Import portions of React that are needed.
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 // Other standard imports.
 import PropTypes from 'prop-types';
@@ -118,7 +118,7 @@ export let ActionBar = React.forwardRef(
     }, [actions, displayCount, overflowAriaLabel, menuOptionsClass]);
 
     // determine display count based on space available and width of pageActions
-    const checkFullyVisibleItems = () => {
+    const checkFullyVisibleItems = useCallback(() => {
       /* istanbul ignore if */
       if (sizingRef.current) {
         let sizingItems = Array.from(
@@ -183,7 +183,7 @@ export let ActionBar = React.forwardRef(
           setDisplayCount(willFit);
         }
       }
-    };
+    }, [maxVisible, onWidthChange]);
 
     useEffect(() => {
       checkFullyVisibleItems();
@@ -191,16 +191,16 @@ export let ActionBar = React.forwardRef(
     }, [maxVisible, hiddenSizingItems]);
 
     // /* istanbul ignore next */ // not sure how to fake window resize
-    const handleResize = () => {
+    const handleResize = useCallback(() => {
       // when the hidden sizing items change size
       /* istanbul ignore next */
       // not sure how to fake window resize
       checkFullyVisibleItems();
-    };
+    }, [checkFullyVisibleItems]);
 
     // // resize of the items
-    useResizeObserver(sizingRef, { callback: handleResize });
-    useResizeObserver(localRef, { callback: handleResize });
+    useResizeObserver(sizingRef, handleResize);
+    useResizeObserver(localRef, handleResize);
 
     return (
       <div {...rest} className={cx([blockClass, className])} ref={localRef}>

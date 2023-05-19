@@ -5,7 +5,7 @@
  * US Government Users Restricted Rights - Use, duplication or disclosure
  * restricted by GSA ADP Schedule Contract with IBM Corp.
  */
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { VariableSizeList } from 'react-window';
 import { TableBody } from '@carbon/react';
 import { pkg } from '../../../settings';
@@ -47,12 +47,12 @@ const DatagridVirtualBody = (datagridState) => {
     gridRef,
   } = datagridState;
 
-  const handleVirtualGridResize = () => {
+  const handleVirtualGridResize = useCallback(() => {
     const gridRefElement = gridRef?.current;
     gridRefElement.style.width = gridRefElement?.clientWidth;
-  };
+  }, [gridRef]);
 
-  useResizeObserver(gridRef, { callback: handleVirtualGridResize });
+  useResizeObserver(gridRef, handleVirtualGridResize);
 
   const syncScroll = (e) => {
     const virtualBody = e.target;
