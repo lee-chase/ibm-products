@@ -12,7 +12,6 @@ module.exports = {
     '@storybook/addon-actions',
     '@storybook/addon-docs',
     '@storybook/addon-controls',
-    '@storybook/addon-knobs',
     '@storybook/addon-links',
     {
       name: '@storybook/addon-storysource',
