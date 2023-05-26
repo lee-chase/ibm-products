@@ -12,6 +12,7 @@ module.exports = {
     '@storybook/addon-actions',
     '@storybook/addon-docs',
     '@storybook/addon-controls',
+    '@storybook/addon-knobs',
     '@storybook/addon-links',
     {
       name: '@storybook/addon-storysource',
@@ -23,6 +24,7 @@ module.exports = {
     },
     '@storybook/addon-viewport',
     '@storybook/addon-mdx-gfm',
+    '@carbon/storybook-addon-theme/register',
   ],
   framework: {
     name: '@storybook/react-webpack5',
