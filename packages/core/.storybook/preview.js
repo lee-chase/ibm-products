@@ -7,7 +7,6 @@
 
 // cspell:words unuse
 
-import { withCarbonTheme } from '@carbon/storybook-addon-theme/react';
 import { ArgsTable, Canvas, Story, Source } from '@storybook/addon-docs';
 import LinkTo from '@storybook/addon-links/react';
 import { themes } from '@storybook/theming';

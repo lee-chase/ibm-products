@@ -10,6 +10,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from '@storybook/components';
 import { SET_STORIES, STORY_CHANGED } from '@storybook/core-events';
+// import { useChannel } from '@storybook/manager-api';
 
 import {
   CARBON_CURRENT_THEME,
@@ -22,9 +23,11 @@ import {
 /**
  * Storybook add-on panel for Carbon theme switcher.
  */
-export const CarbonThemesPanel = ({ api, active, channel }) => {
+export const CarbonThemesPanel = ({ api, active }) => {
   const [theme, setTheme] = useState(CARBON_THEME_DEFAULT);
   const [themes, setThemes] = useState(CARBON_THEMES);
+
+  // const emit = useChannel({ STORY_CHANGED: (...args) => console.log(...args) });
 
   useEffect(() => {
     // on mount sort out initial state
@@ -36,6 +39,8 @@ export const CarbonThemesPanel = ({ api, active, channel }) => {
           ? storyData.parameters[CARBON_THEME_PARAM]
           : {}
         : {};
+
+      console.log(params);
 
       params = mergeParams(params);
 
@@ -53,8 +58,8 @@ export const CarbonThemesPanel = ({ api, active, channel }) => {
   }, [api]);
 
   useEffect(() => {
-    channel.emit(CARBON_CURRENT_THEME, theme);
-  }, [theme, channel]);
+    emit(CARBON_CURRENT_THEME, theme);
+  }, [emit, theme]);
 
   if (!active) {
     return null;
@@ -89,8 +94,4 @@ CarbonThemesPanel.propTypes = {
    * The Storybook API object.
    */
   api: PropTypes.any,
-  /**
-   * channel
-   */
-  channel: PropTypes.object,
 };

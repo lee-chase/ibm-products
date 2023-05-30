@@ -15,38 +15,38 @@ export const CARBON_THEME = `£{CARBON_THEME_PANEL_ID}/carbonTheme`;
 export const CARBON_CURRENT_THEME = `${CARBON_THEMES_ADDON_ID}/current`;
 export const CARBON_THEME_PANEL_ID = `${CARBON_THEMES_ADDON_ID}/panel`;
 
-const defaultOptions = {
-  theme: CARBON_THEMES[0],
-  themes: CARBON_THEMES,
-};
+// const defaultOptions = {
+//   theme: CARBON_THEMES[0],
+//   themes: CARBON_THEMES,
+// };
 
-export const mergeParams = (params) => {
-  const options = { themes: [], ...params };
+// export const mergeParams = (params) => {
+//   const options = { themes: [], ...params };
 
-  if (options.themes.length) {
-    // filter to params.themes
-    options.themes = defaultOptions.themes.filter(
-      (option) => options.themes.indexOf(option) > -1
-    );
-  }
+//   if (options.themes.length) {
+//     // filter to params.themes
+//     options.themes = defaultOptions.themes.filter(
+//       (option) => options.themes.indexOf(option) > -1
+//     );
+//   }
 
-  // check not empty
-  if (options.themes.length === 0) {
-    options.themes = defaultOptions.themes.slice(0);
-  }
+//   // check not empty
+//   if (options.themes.length === 0) {
+//     options.themes = defaultOptions.themes.slice(0);
+//   }
 
-  if (!options.theme) {
-    options.theme = defaultOptions.theme;
-  }
+//   if (!options.theme) {
+//     options.theme = defaultOptions.theme;
+//   }
 
-  if (options.themes.indexOf(options.theme) < 0) {
-    // default theme to one that exists
-    const defaultThemeIndex = options.themes.indexOf(defaultOptions.theme);
-    options.theme =
-      defaultThemeIndex > 0
-        ? options.themes[defaultThemeIndex]
-        : options.themes[0];
-  }
+//   if (options.themes.indexOf(options.theme) < 0) {
+//     // default theme to one that exists
+//     const defaultThemeIndex = options.themes.indexOf(defaultOptions.theme);
+//     options.theme =
+//       defaultThemeIndex > 0
+//         ? options.themes[defaultThemeIndex]
+//         : options.themes[0];
+//   }
 
-  return options;
-};
+//   return options;
+// };

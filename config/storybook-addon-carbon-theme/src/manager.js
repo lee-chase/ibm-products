@@ -7,16 +7,28 @@
  */
 
 import React from 'react';
-import { addons } from '@storybook/addons';
+import { addons, types } from '@storybook/manager-api';
 import { CarbonThemesPanel /*, CarbonTypePanel */ } from './components/Panel';
-import { CARBON_THEMES_ADDON_ID, CARBON_THEME_PANEL_ID } from './shared';
+import {
+  CARBON_THEMES_ADDON_ID,
+  CARBON_THEME_PANEL_ID,
+  PARAM_KEY,
+} from './shared';
+import { CarbonThemeContextProvider } from './components/CarbonThemeContext';
 
 addons.register(CARBON_THEMES_ADDON_ID, (api) => {
-  const channel = addons.getChannel();
+  const addonState = api?.getAddonState(CARBON_THEMES_ADDON_ID);
+
+  console.log(addonState);
+
   addons.addPanel(CARBON_THEME_PANEL_ID, {
     title: 'Carbon theme',
+    type: types.PANEL,
     render: ({ active, key }) => (
-      <CarbonThemesPanel {...{ api, active, key, channel }} />
+      <CarbonThemeContextProvider key={key} active={active}>
+        <CarbonThemesPanel />
+      </CarbonThemeContextProvider>
     ),
+    paramKey: PARAM_KEY,
   });
 });
