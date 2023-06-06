@@ -8,6 +8,17 @@
 // cspell:words grafana
 
 import React, { useEffect, useState } from 'react';
+import { Story } from '@storybook/addon-docs';
+import {
+  Title,
+  Subtitle,
+  Description,
+  Primary,
+  Controls,
+  Stories,
+  Canvas,
+} from '@storybook/blocks';
+import Test from './Test.mdx';
 
 import { pkg } from '../../settings';
 import {
@@ -37,6 +48,23 @@ export default {
   parameters: {
     styles,
     // docs: { page: mdx },
+    docs: {
+      page: (...args) => {
+        console.log(args);
+        return (
+          <>
+            <Title />
+            <Test />
+            <Description />
+            <Subtitle>A banana API</Subtitle>
+            <Controls />
+            <Stories />
+            Wibble
+            <Canvas of={fullyLoaded} />
+          </>
+        );
+      },
+    },
     controls: { sort: 'requiredFirst' },
   },
   argTypes: {

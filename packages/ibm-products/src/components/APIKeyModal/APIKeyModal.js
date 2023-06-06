@@ -35,7 +35,31 @@ const defaults = {
   customSteps: Object.freeze([]),
 };
 
-export let APIKeyModal = forwardRef(
+/**
+
+ [APIKeyModal usage guidelines](https://pages.github.ibm.com/cdai-design/pal/patterns/APIKeyModal/usage)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Code sample](#code-sample)
+- [Component API](#component-api)
+
+## Overview
+
+API key creation / generation is assumed to be the default mode for this modal.
+To enable key editing you have to set the `edit` prop to true and supply any
+other edit related props with the relevant input.
+
+## Code sample
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/APIKeyModal)
+- [Stackblitz](https://stackblitz.com/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/APIKeyModal)
+
+
+## Component API
+
+*/ export let APIKeyModal = forwardRef(
   (
     {
       // The component props, in alphabetical order (for consistency).
