@@ -19,6 +19,29 @@ const defaults = {
   grid: false,
 };
 
+/**
+
+[Cascade usage guidelines](https://pages.github.ibm.com/cdai-design/pal/patterns/Cascade/usage)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Code sample](#code-sample)
+- [Component API](#component-api)
+
+## Overview
+
+Write a description of Cascade
+
+## Code sample
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/Cascade)
+- [Stackblitz](https://stackblitz.com/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/Cascade)
+
+
+## Component API
+
+*/
 export let Cascade = forwardRef(
   (
     {

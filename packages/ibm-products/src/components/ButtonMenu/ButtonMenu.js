@@ -29,12 +29,32 @@ const defaults = {
 };
 
 /**
+
+[ButtonMenu usage guidelines](https://pages.github.ibm.com/cdai-design/pal/patterns/ButtonMenu/usage)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Code sample](#code-sample)
+- [Component API](#component-api)
+
+## Overview
+
  * Combining a standard button with an overflow menu, this component appears
  * as a button and has all the usual carbon Button props and rendering, but
  * acts as an overflow menu when clicked. The ButtonMenu component can contain
  * zero to many ButtonMenuItem, which is identical to the carbon
  * OverflowMenuItem component.
- */
+
+ ## Code sample
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/ButtonMenu)
+- [Stackblitz](https://stackblitz.com/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/ButtonMenu)
+
+
+## Component API
+
+*/
 export let ButtonMenu = React.forwardRef(
   (
     {

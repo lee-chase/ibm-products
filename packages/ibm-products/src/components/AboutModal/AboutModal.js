@@ -33,12 +33,32 @@ const componentName = 'AboutModal';
 // NOTE: the component SCSS is not imported here: it is rolled up separately.
 
 /**
- * The AboutModal component provides a way to communicate product information
- * to users. It is triggered by a user’s action, appears on top of the main
- * page content, and is persistent until dismissed. The purpose of this modal
- * should be immediately apparent to the user, with a clear and obvious path
- * to completion.
- */
+
+[About modal usage guidelines](https://pages.github.ibm.com/cdai-design/pal/patterns/about-modal/usage)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Code sample](#code-sample)
+- [Component API](#component-api)
+
+## Overview
+
+  The AboutModal component provides a way to communicate product information
+  to users. It is triggered by a user’s action, appears on top of the main
+  page content, and is persistent until dismissed. The purpose of this modal
+  should be immediately apparent to the user, with a clear and obvious path
+  to completion.
+
+## Code sample
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/AboutModal)
+- [Stackblitz](https://stackblitz.com/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/AboutModal)
+
+
+## Component API
+
+*/
 export let AboutModal = React.forwardRef(
   (
     {

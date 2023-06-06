@@ -21,6 +21,31 @@ import { pkg } from '../../../settings';
 const blockClass = `${pkg.prefix}--http-errors`;
 const componentName = 'HTTPError403';
 
+/**
+
+[HTTPErrors usage guidelines](https://pages.github.ibm.com/cdai-design/pal/patterns/HTTPErrors/usage)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Code sample](#code-sample)
+- [Component API](#component-api)
+
+## Overview
+
+HTTP errors are used in an attempt to access something that isn’t available or
+the user doesn’t have permission for. This HTTPError component should be used in
+the event the user receives a `403` error code.
+
+## Code sample
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/HTTPErrors)
+- [Stackblitz](https://stackblitz.com/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/HTTPErrors)
+
+
+## Component API
+
+*/
 export let HTTPError403 = React.forwardRef(
   ({ className, description, errorCodeLabel, links, title, ...rest }, ref) => {
     return (

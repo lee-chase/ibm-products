@@ -39,8 +39,28 @@ const componentName = 'DISPLAY_NAME';
 // };
 
 /**
- * TODO: A description of the component.
- */
+
+[DISPLAY_NAME usage guidelines](https://pages.github.ibm.com/cdai-design/pal/patterns/DISPLAY_NAME/usage)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Code sample](#code-sample)
+- [Component API](#component-api)
+
+## Overview
+
+Write a description of DISPLAY_NAME
+
+## Code sample
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/DISPLAY_NAME)
+- [Stackblitz](https://stackblitz.com/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/DISPLAY_NAME)
+
+
+## Component API
+
+*/
 export let DISPLAY_NAME = React.forwardRef(
   (
     {

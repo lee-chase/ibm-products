@@ -32,6 +32,31 @@ const defaults = {
   overflowAlign: 'bottom',
 };
 
+/**
+
+[TagSet usage guidelines](https://pages.github.ibm.com/cdai-design/pal/components/TagSet/usage)
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Code sample](#code-sample)
+- [Component API](#component-api)
+
+## Overview
+
+The TagSet component allows users to see all the labels of a cluster in areas
+where all tags may not be visible at one time. They provide the ability to see
+how many additional labels exist and what they are.
+
+## Code sample
+
+- [CodeSandbox](https://codesandbox.io/p/sandbox/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/TagSet)
+- [Stackblitz](https://stackblitz.com/github/carbon-design-system/ibm-products/tree/main/examples/carbon-for-ibm-products/TagSet)
+
+
+## Component API
+
+*/
 export let TagSet = React.forwardRef(
   (
     {
