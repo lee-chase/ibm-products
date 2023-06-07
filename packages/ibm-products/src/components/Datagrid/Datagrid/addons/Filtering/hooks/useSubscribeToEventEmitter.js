@@ -4,8 +4,8 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import { useEffect, useContext } from 'react';
-import { FilterContext } from '../FilterProvider';
+import { useEffect } from 'react';
+import { useFilterContext } from '../FilterProvider';
 
 /**
  * Subscribes to the filter event emitter
@@ -13,7 +13,7 @@ import { FilterContext } from '../FilterProvider';
  * @param  {Function} callback - a callback to run when the event is dispatched
  */
 const useSubscribeToEventEmitter = (type, callback) => {
-  const { EventEmitter } = useContext(FilterContext);
+  const { EventEmitter } = useFilterContext();
 
   useEffect(function subscribeToEmitter() {
     // This event is emitted from the DatagridToolbar component when clearFilters is clicked in FilterSummary

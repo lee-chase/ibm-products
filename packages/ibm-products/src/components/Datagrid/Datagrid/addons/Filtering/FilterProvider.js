@@ -4,7 +4,7 @@
  * This source code is licensed under the Apache-2.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { DATE, DROPDOWN, NUMBER, RADIO, CHECKBOX } from './constants';
 
@@ -68,4 +68,16 @@ FilterProvider.propTypes = {
     PropTypes.node,
   ]).isRequired,
   filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
+
+export const useFilterContext = () => {
+  // get the context
+  const context = useContext(FilterContext);
+
+  // if `undefined`, throw an error
+  if (context === undefined) {
+    throw new Error('useAppContext was used outside of its Provider');
+  }
+
+  return context;
 };

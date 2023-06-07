@@ -16,7 +16,7 @@ import DatagridToolbar from './DatagridToolbar';
 import { handleGridKeyPress } from './addons/InlineEdit/handleGridKeyPress';
 import { carbon, pkg } from '../../../settings';
 import { InlineEditContext } from './addons/InlineEdit/InlineEditContext';
-import { FilterContext, FilterPanel } from './addons/Filtering';
+import { useFilterContext, FilterPanel } from './addons/Filtering';
 import { handleGridFocus } from './addons/InlineEdit/handleGridFocus';
 import { useClickOutside } from '../../../global/js/hooks';
 import { useMultipleKeyTracking } from '../../DataSpreadsheet/hooks';
@@ -27,7 +27,7 @@ const blockClass = `${pkg.prefix}--datagrid`;
 
 export const DatagridContent = ({ datagridState }) => {
   const { state: inlineEditState, dispatch } = useContext(InlineEditContext);
-  const { filterTags, EventEmitter, panelOpen } = useContext(FilterContext);
+  const { filterTags, EventEmitter, panelOpen } = useFilterContext();
   const { activeCellId, gridActive, editId } = inlineEditState;
   const {
     getTableProps = () => {},

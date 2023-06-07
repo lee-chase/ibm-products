@@ -7,7 +7,7 @@
 
 /* eslint-disable react/jsx-key */
 
-import React, { useRef, useMemo, useContext, useState, useEffect } from 'react';
+import React, { useRef, useMemo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Accordion, AccordionItem, Button, Search, Layer } from '@carbon/react';
 import { rem } from '@carbon/layout';
@@ -22,7 +22,7 @@ import {
 } from './motion/variants';
 import { Close } from '@carbon/react/icons';
 import { ActionSet } from '../../../../ActionSet';
-import { FilterContext } from '.';
+import { useFilterContext } from '.';
 import {
   useFilters,
   useSubscribeToEventEmitter,
@@ -91,7 +91,7 @@ const FilterPanel = ({
   const showActionSet = useMemo(() => updateMethod === BATCH, [updateMethod]);
 
   /** Context */
-  const { panelOpen, setPanelOpen } = useContext(FilterContext);
+  const { panelOpen, setPanelOpen } = useFilterContext();
 
   /** Methods */
   const closePanel = () => {
