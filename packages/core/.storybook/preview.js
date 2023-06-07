@@ -8,6 +8,13 @@
 // cspell:words unuse
 
 import { ArgsTable, Canvas, Story, Source } from '@storybook/addon-docs';
+import {
+  Title,
+  Subtitle,
+  Description,
+  Controls,
+  Stories,
+} from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import { themes } from '@storybook/theming';
 import { withCarbonTheme } from '@carbon/storybook-addon-theme/withCarbonTheme';
@@ -157,6 +164,17 @@ const parameters = {
   viewport: {
     viewports: carbonViewports,
     defaultViewport: 'basic',
+  },
+  docs: {
+    page: () => (
+      <>
+        <Title />
+        <Description />
+        <Stories />
+        <Subtitle>Component API</Subtitle>
+        <Controls />
+      </>
+    ),
   },
 };
 

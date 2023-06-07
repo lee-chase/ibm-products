@@ -8,6 +8,16 @@
 // cspell:words grafana
 
 import React, { useEffect, useState } from 'react';
+// import {
+//   Title,
+//   Subtitle,
+//   Description,
+//   Primary,
+//   Controls,
+//   Stories,
+//   Canvas,
+// } from '@storybook/blocks';
+// import Test from './Test.mdx';
 
 import { pkg } from '../../settings';
 import {
@@ -30,6 +40,14 @@ import styles from './_storybook-styles.scss';
 
 const blockClass = `${pkg.prefix}--about-modal`;
 
+import docsPage from './AboutModal.docs-page';
+
+// const docs = {
+//   page: () => <></>,
+// };
+
+// import { docs } from './AboutModal.stories.docs';
+
 export default {
   title: getStoryTitle(AboutModal.displayName),
   component: AboutModal,
@@ -37,6 +55,9 @@ export default {
   parameters: {
     styles,
     // docs: { page: mdx },
+    docs: {
+      page: docsPage(),
+    },
     controls: { sort: 'requiredFirst' },
   },
   argTypes: {
