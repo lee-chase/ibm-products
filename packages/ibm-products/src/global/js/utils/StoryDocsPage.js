@@ -25,8 +25,8 @@ import { codeSandboxHref, stackblitzHref } from './story-helper';
 export const CustomBlocks = ({ blocks }) => {
   return blocks.map((block) => (
     <div key={block.title}>
-      <h3>{block.title}</h3>
-      {block.description}
+      <h3 id={_.kebabCase(block.title)}>{block.title}</h3>
+      {block.description && <p>{block.description}</p>}
       {block.story && <Canvas of={block.story} />}
       {block.source && <Source {...block.source} />}
     </div>
@@ -41,6 +41,8 @@ export const StoryDocsPage = ({
   guidelinesHref,
   hasCodedExample,
 }) => {
+  const storyCount = blocks?.filter((block) => !!block.story).length ?? 0;
+
   return (
     <>
       <Title>{altTitle}</Title>
@@ -55,10 +57,23 @@ export const StoryDocsPage = ({
         Table of contents
       </h2>
       <ul>
-        {['Overview', 'Coded Examples', 'Stories', 'Component API'].map(
+        {['Overview', 'Coded examples', 'Example usage', 'Component API'].map(
           (item) => (
             <li key={item}>
               <AnchorMdx href={`#${_.kebabCase(item)}`}>{item}</AnchorMdx>
+              {blocks && item === 'Example usage' ? (
+                <ul>
+                  {blocks.map((block) => {
+                    return block?.title ? (
+                      <li key={block.title}>
+                        <AnchorMdx href={`#${_.kebabCase(block.title)}`}>
+                          {block.title}
+                        </AnchorMdx>
+                      </li>
+                    ) : null;
+                  })}
+                </ul>
+              ) : null}
             </li>
           )
         )}
@@ -113,10 +128,16 @@ export const StoryDocsPage = ({
         </>
       ) : null}
 
-      <h2 id="stories">Example usage</h2>
+      <h2 id="example-usage">Example usage</h2>
       {blocks ? <CustomBlocks blocks={blocks} /> : <Stories />}
 
       <h2 id="component-api">Component API</h2>
+      {storyCount > 1 && (
+        <p>
+          NOTE: Changing the controls below affects the first example shown on
+          the docs page.
+        </p>
+      )}
       <Controls />
     </>
   );
