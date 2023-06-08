@@ -8,12 +8,12 @@
 import React from 'react';
 import { UserProfileImage } from '.';
 import {
-  encaseDocsPageStoryTag,
   getStoryTitle,
   prepareStory,
 } from '../../global/js/utils/story-helper';
-// import mdx from './UserProfileImage.mdx';
 import image from './headshot.jpg'; // cspell:disable-line
+import docsPage from './UserProfileImage.docs-page';
+
 // import styles from './_storybook.scss'; // import storybook which includes component and additional storybook styles
 
 const defaultArgs = {
@@ -25,7 +25,7 @@ const defaultArgs = {
 export default {
   title: getStoryTitle(UserProfileImage.displayName),
   component: UserProfileImage,
-  tags: ['autodocs', encaseDocsPageStoryTag],
+  tags: ['autodocs'],
   argTypes: {
     backgroundColor: {
       control: {
@@ -69,7 +69,9 @@ export default {
   },
   parameters: {
     // styles,
-    // docs: { page: mdx },
+    docs: {
+      page: docsPage(),
+    },
   },
 };
 

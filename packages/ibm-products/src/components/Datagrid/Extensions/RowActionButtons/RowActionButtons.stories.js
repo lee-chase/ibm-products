@@ -35,7 +35,9 @@ export default {
   tags: ['autodocs'],
   parameters: {
     styles,
-    // docs: { page: mdx },
+    // docs: {
+    //   page: docsPage(),
+    // },
   },
   argTypes: {
     featureFlags: {

@@ -45,7 +45,9 @@ export default {
   parameters: {
     styles,
     layout: 'fullscreen',
-    // docs: { page: mdx },
+    // docs: {
+    //   page: docsPage(),
+    // },
     controls: { sort: 'requiredFirst' },
   },
   decorators: [

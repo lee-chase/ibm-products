@@ -137,7 +137,9 @@ export default {
   component: TagSet,
   tags: ['autodocs'],
   parameters: {
-    // docs: { page: mdx },
+    // docs: {
+    //   page: docsPage(),
+    // },
     styles,
   },
   argTypes: {

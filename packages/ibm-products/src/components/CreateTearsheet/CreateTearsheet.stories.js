@@ -33,7 +33,9 @@ export default {
   },
   parameters: {
     styles,
-    // docs: { page: mdx },
+    // docs: {
+    //   page: docsPage(),
+    // },
   },
 };
 

@@ -28,14 +28,14 @@ import {
 } from './story-helper';
 
 export const CustomBlocks = ({ blocks }) => {
-  return blocks.map((block) => {
+  return blocks.map((block, index) => {
     const source = { ...block?.source };
     if (source.code && !source.language) {
       source.language = 'jsx';
     }
 
     return (
-      <div key={block.title}>
+      <div key={`block-index--${index}`}>
         {block.title && <h3 id={_.kebabCase(block.title)}>{block.title}</h3>}
         {block.subTitle && <h4>{block.subTitle}</h4>}
         {block.description && typeof block.description === 'string' ? (
