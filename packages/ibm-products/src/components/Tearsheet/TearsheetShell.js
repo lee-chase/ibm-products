@@ -59,6 +59,13 @@ export const tearsheetHasCloseIcon = (actions, hasCloseIcon) =>
   hasCloseIcon ?? tearsheetIsPassive(actions);
 
 // TearSheetShell is used internally by TearSheet and TearSheetNarrow
+/**
+ * The TearsheetShell component is a base component for Tearsheet and TearsheetNarrow. It provides the animated, modal, stackable container that holds their structured content.
+ *
+ * The component is not public.
+ *
+ * See the canvas tab for the component API details.
+ */
 export const TearsheetShell = React.forwardRef(
   (
     {

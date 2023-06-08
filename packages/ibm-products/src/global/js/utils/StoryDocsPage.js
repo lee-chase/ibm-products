@@ -23,20 +23,34 @@ import _ from 'lodash';
 import { codeSandboxHref, stackblitzHref } from './story-helper';
 
 export const CustomBlocks = ({ blocks }) => {
-  return blocks.map((block) => (
-    <div key={block.title}>
-      <h3 id={_.kebabCase(block.title)}>{block.title}</h3>
-      {block.description && <p>{block.description}</p>}
-      {block.story && <Canvas of={block.story} />}
-      {block.source && <Source {...block.source} />}
-    </div>
-  ));
+  return blocks.map((block) => {
+    const source = { ...block?.source };
+    if (source.code && !source.language) {
+      source.language = 'jsx';
+    }
+
+    return (
+      <div key={block.title}>
+        {block.title && <h3 id={_.kebabCase(block.title)}>{block.title}</h3>}
+        {block.subTitle && <h4>{block.subTitle}</h4>}
+        {block.description && typeof block.description === 'string' ? (
+          <Description>{block.description}</Description>
+        ) : (
+          block.description
+        )}
+        {block.story && (
+          <Canvas className="docs-page__story" of={block.story} />
+        )}
+        {block.source && <Source {...source} />}
+      </div>
+    );
+  });
 };
 
 export const StoryDocsPage = ({
   blocks,
-  altTitle, // uses the component name by default
-  altDescription, // uses doc bloc comment prior to component by default
+  altTitle,
+  altDescription,
   componentName,
   guidelinesHref,
   hasCodedExample,
@@ -49,7 +63,7 @@ export const StoryDocsPage = ({
 
       {guidelinesHref && (
         <AnchorMdx href={guidelinesHref}>
-          About modal usage guidelines
+          {componentName} usage guidelines
         </AnchorMdx>
       )}
 
@@ -144,20 +158,53 @@ export const StoryDocsPage = ({
 };
 
 StoryDocsPage.propTypes = {
+  /**
+   * Uses doc block from the component where identified.
+   * If passed as string treated as markdown.
+   */
   altDescription: PropTypes.node,
+  /**
+   * Uses component name by default
+   */
   altTitle: PropTypes.string,
+  /**
+   * Array with content sections
+   */
   blocks: PropTypes.arrayOf(
     PropTypes.shape({
+      /**
+       * Optional title (used as link in contents) a <h3>
+       */
       title: PropTypes.string,
+      /**
+       * Optional subTitle a <h4>
+       */
+      subTitle: PropTypes.string,
+      /**
+       * Optional description, strings treated as markdown.
+       */
       description: PropTypes.node,
+      /**
+       * Story imported from story file
+       */
       story: PropTypes.func,
+      /**
+       * Some source code
+       * default language `jsx`
+       */
       source: PropTypes.shape({
-        language: PropTypes.string,
+        language: PropTypes.oneOf('javascript', 'css', 'jsx'),
         code: PropTypes.string,
       }),
     })
   ),
   componentName: PropTypes.string,
+  /**
+   * location if any of guidelines on the PAL site.
+   */
   guidelinesHref: PropTypes.string,
+  /**
+   * Set to true if an example exists in the examples folder (ComponentName) matched
+   */
   hasCodedExample: PropTypes.bool,
 };

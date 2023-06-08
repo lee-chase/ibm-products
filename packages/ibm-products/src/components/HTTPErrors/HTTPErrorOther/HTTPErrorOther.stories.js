@@ -20,6 +20,7 @@ export default {
   component: HTTPErrorOther,
   tags: ['autodocs'],
   parameters: {
+    layout: 'fullscreen',
     // docs: {
     //   page,
     // },

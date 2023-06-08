@@ -20,6 +20,7 @@ export default {
   component: HTTPError403,
   tags: ['autodocs'],
   parameters: {
+    layout: 'fullscreen',
     // docs: {
     //   page,
     // },

@@ -16,7 +16,7 @@ import {
 import { ExampleComponent } from '.';
 // import mdx from './ExampleComponent.mdx';
 import { pkg } from '../../settings';
-import docsPage from '../ExampleComponent/ExampleComponent.docs-page';
+import docsPage from './ExampleComponent.docs-page';
 
 import styles from './_storybook-styles.scss';
 
