@@ -25,9 +25,6 @@ module.exports = {
     '@storybook/addon-mdx-gfm',
     '@carbon/storybook-addon-theme/preset.js',
   ],
-  docs: {
-    autodocs: true,
-  },
   framework: {
     name: '@storybook/react-webpack5',
     options: {
