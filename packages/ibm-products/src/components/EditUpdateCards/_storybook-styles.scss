@@ -13,7 +13,8 @@
 // make the root full width to get a better idea of how the cards
 // look in a real grid situation
 /* stylelint-disable max-nesting-depth */
-#root {
+#root,
+.docs-story [scale] {
   width: 100%;
 }
 
