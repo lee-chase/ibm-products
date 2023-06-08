@@ -8,6 +8,7 @@
 import React from 'react';
 import { UserProfileImage } from '.';
 import {
+  encaseDocsPageStoryTag,
   getStoryTitle,
   prepareStory,
 } from '../../global/js/utils/story-helper';
@@ -24,7 +25,7 @@ const defaultArgs = {
 export default {
   title: getStoryTitle(UserProfileImage.displayName),
   component: UserProfileImage,
-  tags: ['autodocs'],
+  tags: ['autodocs', encaseDocsPageStoryTag],
   argTypes: {
     backgroundColor: {
       control: {

@@ -88,20 +88,3 @@ $story-class: 'page-header-stories';
   box-shadow: 0 0 4px 1px $layer-accent-01;
   color: $text-primary;
 }
-
-$story-anchor: 'page-header';
-div[id*='#{$story-anchor}'],
-.docs-page__story {
-  /* stylelint-disable-next-line max-nesting-depth */
-  .docs-story {
-    min-height: 50vh;
-    /* stylelint-disable-next-line carbon/layout-token-use */
-    transform: translateZ(0);
-  }
-
-  /* stylelint-disable-next-line max-nesting-depth */
-  > div:first-child {
-    overflow: hidden;
-    width: 100%;
-  }
-}

@@ -44,6 +44,7 @@ import { ActionBarItem } from '../ActionBar';
 import { PageHeader } from './PageHeader';
 
 import {
+  encaseDocsPageStoryTag,
   getStoryTitle,
   prepareStory,
 } from '../../global/js/utils/story-helper';
@@ -398,7 +399,7 @@ const fullWidthGrid = {
 export default {
   title: getStoryTitle(PageHeader.displayName),
   component: PageHeader,
-  tags: ['autodocs'],
+  tags: ['autodocs', encaseDocsPageStoryTag],
   subcomponents: { ActionBarItem },
   parameters: { styles, layout: 'fullscreen' /* docs: { page: mdx } */ },
   decorators: [

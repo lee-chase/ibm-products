@@ -16,11 +16,16 @@ import {
   Canvas,
   Stories,
   AnchorMdx,
+  useOf,
 } from '@storybook/blocks';
 
 import _ from 'lodash';
 
-import { codeSandboxHref, stackblitzHref } from './story-helper';
+import {
+  codeSandboxHref,
+  encaseDocsPageStoryTag,
+  stackblitzHref,
+} from './story-helper';
 
 export const CustomBlocks = ({ blocks }) => {
   return blocks.map((block) => {
@@ -38,9 +43,7 @@ export const CustomBlocks = ({ blocks }) => {
         ) : (
           block.description
         )}
-        {block.story && (
-          <Canvas className="docs-page__story" of={block.story} />
-        )}
+        {block.story && <Canvas of={block.story} />}
         {block.source && <Source {...source} />}
       </div>
     );
@@ -56,6 +59,12 @@ export const StoryDocsPage = ({
   hasCodedExample,
 }) => {
   const storyCount = blocks?.filter((block) => !!block.story).length ?? 0;
+  const { csfFile } = useOf('meta', ['meta']);
+
+  let storyHelperClass = '';
+  if (csfFile?.meta?.tags?.includes(encaseDocsPageStoryTag)) {
+    storyHelperClass = encaseDocsPageStoryTag;
+  }
 
   return (
     <>
@@ -143,7 +152,9 @@ export const StoryDocsPage = ({
       ) : null}
 
       <h2 id="example-usage">Example usage</h2>
-      {blocks ? <CustomBlocks blocks={blocks} /> : <Stories />}
+      <div className={storyHelperClass}>
+        {blocks ? <CustomBlocks blocks={blocks} /> : <Stories />}
+      </div>
 
       <h2 id="component-api">Component API</h2>
       {storyCount > 1 && (

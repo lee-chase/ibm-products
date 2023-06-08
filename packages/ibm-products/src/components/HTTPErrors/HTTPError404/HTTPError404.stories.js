@@ -8,6 +8,7 @@
 import React from 'react';
 import { HTTPError404 } from '.';
 import {
+  encaseDocsPageStoryTag,
   getStoryTitle,
   prepareStory,
 } from '../../../global/js/utils/story-helper';
@@ -18,7 +19,8 @@ import styles from '../_storybook-styles.scss';
 export default {
   title: getStoryTitle(HTTPError404.displayName),
   component: HTTPError404,
-  tags: ['autodocs'],
+  tags: ['autodocs', encaseDocsPageStoryTag],
+
   parameters: {
     layout: 'fullscreen',
     // docs: {
