@@ -44,7 +44,7 @@ export default {
     styles,
     layout: 'fullscreen',
     // docs: {
-    //   page: docsPage(),
+    //   page: docsPage,
     // },
     controls: { sort: 'requiredFirst' },
   },

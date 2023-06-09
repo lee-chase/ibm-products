@@ -3,23 +3,22 @@ import { StoryDocsPage } from '../../global/js/utils/StoryDocsPage';
 import { WebTerminal } from '.';
 import * as stories from './WebTerminal.stories';
 
-const docsPage = () => {
-  return () => (
-    <StoryDocsPage
-      // altDescription="The `WebTerminal` is prompted by the user and is persistent until dismissed. The purpose of a web terminal is to provide users with the ability to type commands manually instead of using the GUI."
-      componentName={WebTerminal.displayName}
-      guidelinesHref="https://pages.github.ibm.com/cdai-design/pal/patterns/web-terminal/usage"
-      hasCodedExample={true}
-      blocks={[
-        {
-          description: `To get started using the WebTerminal, you have to first wrap your
+const docsPage = () => (
+  <StoryDocsPage
+    altDescription="The `WebTerminal` is prompted by the user and is persistent until dismissed. The purpose of a web terminal is to provide users with the ability to type commands manually instead of using the GUI."
+    componentName={WebTerminal.displayName}
+    guidelinesHref="https://pages.github.ibm.com/cdai-design/pal/patterns/web-terminal/usage"
+    hasCodedExample={true}
+    blocks={[
+      {
+        description: `To get started using the WebTerminal, you have to first wrap your
               application with the \`<WebTerminalProvider>\`
               component. This will allow all the WebTerminal components to be
               used with the \`useWebTerminal()\` custom hook.
           `,
-          title: 'Getting Started',
-          source: {
-            code: `import { WebTerminalProvider } from '@carbon/ibm-products';
+        title: 'Getting Started',
+        source: {
+          code: `import { WebTerminalProvider } from '@carbon/ibm-products';
 
 const App = () => {
   return (
@@ -28,24 +27,24 @@ const App = () => {
     <WebTerminalProvider>
   )
 };`,
-          },
         },
-        {
-          title: 'useWebTerminal()',
-          source: {
-            code: `const { open, openWebTerminal, closeWebTerminal, toggleWebTerminal } =
+      },
+      {
+        title: 'useWebTerminal()',
+        source: {
+          code: `const { open, openWebTerminal, closeWebTerminal, toggleWebTerminal } =
   useWebTerminal();`,
-          },
         },
-        {
-          description: `The \`useWebTerminal()\` hook returns an object with 4 properties:
+      },
+      {
+        description: `The \`useWebTerminal()\` hook returns an object with 4 properties:
 1. Read the \`open\` state (true or false)
 2. \`openWebTerminal\` sets the \`open\` state to true
 3. \`closeWebTerminal\` sets the \`open\` state to false
 4. \`toggleWebTerminal\` toggles between true and false
 `,
-          source: {
-            code: `const MyComponent = () => {
+        source: {
+          code: `const MyComponent = () => {
   const { open, openWebTerminal, closeWebTerminal, toggleWebTerminal } =
     useWebTerminal();
 
@@ -60,41 +59,41 @@ const App = () => {
     </div>
   );
 };`,
-          },
         },
-        {
-          subTitle: 'Passing in your own terminal.',
-          description: `The \`WebTerminal\` is wrapper component for your own
+      },
+      {
+        subTitle: 'Passing in your own terminal.',
+        description: `The \`WebTerminal\` is wrapper component for your own
 terminal component that you may have been using for your product.
 Simply pass your own terminal component as children.
             `,
-        },
-        {
-          subTitle: 'Optional wrapper component.',
-          description: `Optionally you can import \`WebTerminalContentWrapper\` to have
+      },
+      {
+        subTitle: 'Optional wrapper component.',
+        description: `Optionally you can import \`WebTerminalContentWrapper\` to have
               content adjust their width based off the \`WebTerminal\` width when
               it is opened.`,
-          source: {
-            code: `<WebTerminalContentWrapper>
+        source: {
+          code: `<WebTerminalContentWrapper>
   content
 </WebTerminalContentWrapper>
 
 <WebTerminal>
   ...
 </WebTerminal>`,
-          },
         },
-        {
-          description:
-            'The default web terminal is one which opens and the terminal loads. Then if the user desires to dismiss it they can click the close icon on the top right corner of the component.',
-          story: stories.Default,
-        },
-        {
-          story: stories.WithDocumentationLinks,
-        },
-        {
-          subTitle: 'Help users with helpful documentation links',
-          description: `Optionally you can pass documentation links to help point your users to useful
+      },
+      {
+        description:
+          'The default web terminal is one which opens and the terminal loads. Then if the user desires to dismiss it they can click the close icon on the top right corner of the component.',
+        story: stories.Default,
+      },
+      {
+        story: stories.WithDocumentationLinks,
+      },
+      {
+        subTitle: 'Help users with helpful documentation links',
+        description: `Optionally you can pass documentation links to help point your users to useful
 documentation for your terminal, or kubernetes commands etc.
 
 The documentation links should reflect the same props as \`OverflowMenuItem\` from
@@ -103,8 +102,8 @@ carbon.
 Learn more:
 https://react.carbondesignsystem.com/?path=/docs/components-overflowmenu--default
 `,
-          source: {
-            code: `const documentationLinks = [
+        source: {
+          code: `const documentationLinks = [
   {
     itemText: 'BX/ICP docs',
     href: '#',
@@ -126,16 +125,16 @@ https://react.carbondesignsystem.com/?path=/docs/components-overflowmenu--defaul
     onClick: () => console.log('clicked'),
   },
 ];`,
-          },
         },
-        {
-          story: stories.WithActions,
-        },
-        {
-          description: `Optionally you can add actions to the web terminal header bar. To add actions
+      },
+      {
+        story: stories.WithActions,
+      },
+      {
+        description: `Optionally you can add actions to the web terminal header bar. To add actions
 you need to pass in an array of actions with objects for each object.`,
-          source: {
-            code: `<WebTerminal
+        source: {
+          code: `<WebTerminal
   actions={[
     {
       renderIcon: Code32,
@@ -146,11 +145,10 @@ you need to pass in an array of actions with objects for each object.`,
 >
   ...
 </WebTerminal>`,
-          },
         },
-      ]}
-    />
-  );
-};
+      },
+    ]}
+  />
+);
 
 export default docsPage;

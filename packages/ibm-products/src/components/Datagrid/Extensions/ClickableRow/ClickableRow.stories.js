@@ -38,7 +38,7 @@ export default {
   parameters: {
     styles,
     // docs: {
-    //   page: docsPage(),
+    //   page: docsPage,
     // },
   },
 };

@@ -54,7 +54,7 @@ export const CustomBlocks = ({ blocks }) => {
  * - Adds blocks for unreferenced stories if includeAllStories is true
  */
 const processBlocks = (blocks, stories, includeAllStories) => {
-  const blocksWithStoryTitles = [...blocks];
+  const blocksWithStoryTitles = blocks ? [...blocks] : [];
   const restOfStories = [];
 
   const storyKeys = Object.keys(stories);
@@ -107,7 +107,16 @@ export const StoryDocsPage = ({
     <>
       <Title>{altTitle ?? componentName}</Title>
 
-      {guidelinesHref && (
+      {guidelinesHref && Array.isArray(guidelinesHref) ? (
+        guidelinesHref.map(({ href, label }, index) => (
+          <>
+            {index > 0 && ' | '}
+            <AnchorMdx key={href} href={href}>
+              {label}
+            </AnchorMdx>
+          </>
+        ))
+      ) : (
         <AnchorMdx href={guidelinesHref}>
           {componentName} usage guidelines
         </AnchorMdx>
@@ -254,7 +263,12 @@ StoryDocsPage.propTypes = {
   /**
    * location if any of guidelines on the PAL site.
    */
-  guidelinesHref: PropTypes.string,
+  guidelinesHref: PropTypes.oneOfType(
+    PropTypes.string,
+    PropTypes.arrayOf(
+      PropTypes.shape({ href: PropTypes.string, label: PropTypes.string })
+    )
+  ),
   /**
    * Set to true if an example exists in the examples folder (ComponentName) matched
    */

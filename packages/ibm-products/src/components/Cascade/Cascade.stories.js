@@ -24,7 +24,7 @@ export default {
     styles,
 
     docs: {
-      page: docsPage(),
+      page: docsPage,
     },
   },
 };

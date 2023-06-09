@@ -55,10 +55,10 @@ export default {
   parameters: {
     styles,
     // docs: {
-    //   page: docsPage(),
+    //   page: docsPage,
     // },
     docs: {
-      page: docsPage(),
+      page: docsPage,
     },
     controls: { sort: 'requiredFirst' },
   },

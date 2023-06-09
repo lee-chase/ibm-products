@@ -138,7 +138,7 @@ export default {
   tags: ['autodocs'],
   parameters: {
     // docs: {
-    //   page: docsPage(),
+    //   page: docsPage,
     // },
     styles,
   },

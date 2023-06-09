@@ -49,7 +49,7 @@ export default {
 
   parameters: {
     docs: {
-      page: docsPage(),
+      page: docsPage,
     },
   },
 };

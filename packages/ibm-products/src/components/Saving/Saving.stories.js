@@ -12,9 +12,9 @@ import {
   prepareStory,
 } from '../../global/js/utils/story-helper';
 import { Saving } from '.';
-// import mdx from './Saving.mdx';
 import wait from '../../global/js/utils/wait';
 import { TextArea } from '@carbon/react';
+import { StoryDocsPage } from '../../global/js/utils/StoryDocsPage';
 
 export default {
   title: getStoryTitle(Saving.displayName),
@@ -22,11 +22,17 @@ export default {
   tags: ['autodocs'],
   parameters: {
     styles,
-    /*
-docs: {
-      page: mdx,
+
+    docs: {
+      page: () => (
+        <StoryDocsPage
+          componentName={Saving.displayName}
+          guidelinesHref="https://pages.github.ibm.com/cdai-design/pal/patterns/saving/usage"
+          hasCodedExample={true}
+          includeAllStories={true}
+        />
+      ),
     },
-*/
   },
   argTypes: {
     successful: {
