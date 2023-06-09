@@ -32,7 +32,6 @@ export const CustomBlocks = ({ blocks }) => {
     if (source.code && !source.language) {
       source.language = 'jsx';
     }
-
     return (
       <div key={`block-index--${index}`}>
         {block.title && <h3 id={paramCase(block.title)}>{block.title}</h3>}
@@ -106,7 +105,7 @@ export const StoryDocsPage = ({
 
   return (
     <>
-      <Title>{altTitle}</Title>
+      <Title>{altTitle ?? componentName}</Title>
 
       {guidelinesHref && (
         <AnchorMdx href={guidelinesHref}>

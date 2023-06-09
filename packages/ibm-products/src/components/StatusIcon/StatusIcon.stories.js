@@ -14,6 +14,7 @@ import {
   getStoryTitle,
   prepareStory,
 } from '../../global/js/utils/story-helper';
+import docsPage from './StatusIcon.docs-page';
 
 export default {
   title: getStoryTitle(StatusIcon.displayName),
@@ -53,11 +54,9 @@ export default {
   },
   parameters: {
     // styles,
-    /*
-docs: {
-      page: mdx,
+    docs: {
+      page: docsPage(),
     },
-*/
   },
 };
 
