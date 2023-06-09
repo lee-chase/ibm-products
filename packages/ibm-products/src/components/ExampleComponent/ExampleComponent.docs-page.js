@@ -7,8 +7,6 @@ import * as stories from './ExampleComponent.stories';
 const docsPage = () => {
   return () => (
     <StoryDocsPage
-      // altTitle={`Alternative title uses component name by default`}
-      // altDescription="An alternative description to the component JSDoc comment"
       componentName={ExampleComponent.displayName}
       blocks={[
         {

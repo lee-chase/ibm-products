@@ -6,8 +6,7 @@ import * as stories from './WebTerminal.stories';
 const docsPage = () => {
   return () => (
     <StoryDocsPage
-      // altTitle={`Alternative title uses component name by default`}
-      altDescription="The `WebTerminal` is prompted by the user and is persistent until dismissed. The purpose of a web terminal is to provide users with the ability to type commands manually instead of using the GUI."
+      // altDescription="The `WebTerminal` is prompted by the user and is persistent until dismissed. The purpose of a web terminal is to provide users with the ability to type commands manually instead of using the GUI."
       componentName={WebTerminal.displayName}
       guidelinesHref="https://pages.github.ibm.com/cdai-design/pal/patterns/web-terminal/usage"
       hasCodedExample={true}
@@ -86,13 +85,11 @@ Simply pass your own terminal component as children.
           },
         },
         {
-          title: 'Default',
           description:
             'The default web terminal is one which opens and the terminal loads. Then if the user desires to dismiss it they can click the close icon on the top right corner of the component.',
           story: stories.Default,
         },
         {
-          title: 'With documentation links',
           story: stories.WithDocumentationLinks,
         },
         {
@@ -132,7 +129,6 @@ https://react.carbondesignsystem.com/?path=/docs/components-overflowmenu--defaul
           },
         },
         {
-          title: 'With actions',
           story: stories.WithActions,
         },
         {

@@ -7,18 +7,14 @@ import * as stories from './AboutModal.stories';
 const docsPage = () => {
   return () => (
     <StoryDocsPage
-      // altTitle={`Alternative title uses component name by default`}
-      // altDescription="An alternative description to the component JSDoc comment"
       componentName={AboutModal.displayName}
       guidelinesHref="https://pages.github.ibm.com/cdai-design/pal/patterns/about-modal/usage"
       hasCodedExample={true}
       blocks={[
         {
-          title: 'About Modal',
           story: stories.aboutModal,
         },
         {
-          title: 'About modal with all props set',
           story: stories.fullyLoaded,
         },
         {

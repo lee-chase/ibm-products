@@ -18,8 +18,7 @@ import {
   AnchorMdx,
   useOf,
 } from '@storybook/blocks';
-
-import _ from 'lodash';
+const { paramCase } = require('change-case');
 
 import {
   codeSandboxHref,
@@ -36,7 +35,7 @@ export const CustomBlocks = ({ blocks }) => {
 
     return (
       <div key={`block-index--${index}`}>
-        {block.title && <h3 id={_.kebabCase(block.title)}>{block.title}</h3>}
+        {block.title && <h3 id={paramCase(block.title)}>{block.title}</h3>}
         {block.subTitle && <h4>{block.subTitle}</h4>}
         {block.description && typeof block.description === 'string' ? (
           <Description>{block.description}</Description>
@@ -50,6 +49,38 @@ export const CustomBlocks = ({ blocks }) => {
   });
 };
 
+/**
+ * This function checks blocks against stories and then
+ * - Adds title if no alternative is supplied
+ * - Adds blocks for unreferenced stories if includeAllStories is true
+ */
+const processBlocks = (blocks, stories, includeAllStories) => {
+  const blocksWithStoryTitles = [...blocks];
+  const restOfStories = [];
+
+  const storyKeys = Object.keys(stories);
+  storyKeys.forEach((sk) => {
+    const story = stories[sk].moduleExport;
+    const storyName = stories[sk].name;
+
+    const matchingBlock = blocksWithStoryTitles.find(
+      (block) => block.story === story
+    );
+
+    if (matchingBlock) {
+      matchingBlock.title = matchingBlock.title ?? storyName;
+    } else if (includeAllStories) {
+      restOfStories.push({ story, title: storyName });
+    }
+  });
+
+  if (includeAllStories) {
+    return blocksWithStoryTitles.concat(restOfStories);
+  }
+
+  return blocksWithStoryTitles;
+};
+
 export const StoryDocsPage = ({
   blocks,
   altTitle,
@@ -57,6 +88,7 @@ export const StoryDocsPage = ({
   componentName,
   guidelinesHref,
   hasCodedExample,
+  includeAllStories,
 }) => {
   const storyCount = blocks?.filter((block) => !!block.story).length ?? 0;
   const { csfFile } = useOf('meta', ['meta']);
@@ -65,6 +97,12 @@ export const StoryDocsPage = ({
   if (csfFile?.meta?.tags?.includes(encaseDocsPageStoryTag)) {
     storyHelperClass = encaseDocsPageStoryTag;
   }
+
+  const processedBlocks = processBlocks(
+    blocks,
+    csfFile.stories,
+    includeAllStories
+  );
 
   return (
     <>
@@ -83,13 +121,13 @@ export const StoryDocsPage = ({
         {['Overview', 'Coded examples', 'Example usage', 'Component API'].map(
           (item) => (
             <li key={item}>
-              <AnchorMdx href={`#${_.kebabCase(item)}`}>{item}</AnchorMdx>
+              <AnchorMdx href={`#${paramCase(item)}`}>{item}</AnchorMdx>
               {blocks && item === 'Example usage' ? (
                 <ul>
-                  {blocks.map((block) => {
+                  {processedBlocks.map((block) => {
                     return block?.title ? (
                       <li key={block.title}>
-                        <AnchorMdx href={`#${_.kebabCase(block.title)}`}>
+                        <AnchorMdx href={`#${paramCase(block.title)}`}>
                           {block.title}
                         </AnchorMdx>
                       </li>
@@ -153,14 +191,18 @@ export const StoryDocsPage = ({
 
       <h2 id="example-usage">Example usage</h2>
       <div className={storyHelperClass}>
-        {blocks ? <CustomBlocks blocks={blocks} /> : <Stories />}
+        {processedBlocks ? (
+          <CustomBlocks blocks={processedBlocks} />
+        ) : (
+          <Stories />
+        )}
       </div>
 
       <h2 id="component-api">Component API</h2>
       {storyCount > 1 && (
         <p>
-          NOTE: Changing the controls below affects the first example shown on
-          the docs page.
+          NOTE: Changing the controls below affects the default/primary example
+          shown on the docs page.
         </p>
       )}
       <Controls />
@@ -184,7 +226,7 @@ StoryDocsPage.propTypes = {
   blocks: PropTypes.arrayOf(
     PropTypes.shape({
       /**
-       * Optional title (used as link in contents) a <h3>
+       * Optional title story name used by default<h3>
        */
       title: PropTypes.string,
       /**
@@ -218,4 +260,8 @@ StoryDocsPage.propTypes = {
    * Set to true if an example exists in the examples folder (ComponentName) matched
    */
   hasCodedExample: PropTypes.bool,
+  /**
+   * show stories not referenced in blocks
+   */
+  includeAllStories: PropTypes.bool,
 };
