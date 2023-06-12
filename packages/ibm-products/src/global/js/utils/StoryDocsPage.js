@@ -220,7 +220,11 @@ export const StoryDocsPage = ({
 
 StoryDocsPage.propTypes = {
   /**
-   * Uses doc block from the component where identified.
+   * Uses doc block from the component where possible.
+   *
+   * Note: use `export default { component: ExampleComponent }` in the story if the main component is wrapped by some
+   * additional code. This will allow the doc block to pass through.
+   *
    * If passed as string treated as markdown.
    */
   altDescription: PropTypes.node,

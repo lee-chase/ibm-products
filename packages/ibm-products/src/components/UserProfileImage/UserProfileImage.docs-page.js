@@ -5,7 +5,6 @@ import * as stories from './UserProfileImage.stories';
 
 const docsPage = () => (
   <StoryDocsPage
-    altDescription="The user profile avatar allows for an image of the user to be displayed by passing in the image prop. By default the component will display a user icon on a blue background."
     componentName={UserProfileImage.displayName}
     guidelinesHref="https://pages.github.ibm.com/cdai-design/pal/patterns/user-profile/usage"
     hasCodedExample={true}

@@ -5,7 +5,6 @@ import * as stories from './WebTerminal.stories';
 
 const docsPage = () => (
   <StoryDocsPage
-    altDescription="The `WebTerminal` is prompted by the user and is persistent until dismissed. The purpose of a web terminal is to provide users with the ability to type commands manually instead of using the GUI."
     componentName={WebTerminal.displayName}
     guidelinesHref="https://pages.github.ibm.com/cdai-design/pal/patterns/web-terminal/usage"
     hasCodedExample={true}

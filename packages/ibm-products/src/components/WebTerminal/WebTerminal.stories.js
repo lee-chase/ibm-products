@@ -97,4 +97,5 @@ export default {
       page: docsPage,
     },
   },
+  component: WebTerminal, // Required to pick up WebTerminal doc block
 };
