@@ -57,9 +57,9 @@ describe(componentName, () => {
     );
   });
 
-  it(`renders the boxedBorder property`, () => {
-    renderComponent({ boxedBorder: true });
-    expect(screen.getByRole('main')).toHaveClass(`${blockClass}--boxed-set`);
+  it(`renders the borderType property`, () => {
+    renderComponent({ borderType: 'box' });
+    expect(screen.getByRole('main')).toHaveClass(`${blockClass}--box`);
   });
 
   it('applies className to the containing node', () => {

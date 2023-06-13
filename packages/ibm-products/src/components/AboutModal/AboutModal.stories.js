@@ -8,6 +8,16 @@
 // cspell:words grafana
 
 import React, { useEffect, useState } from 'react';
+// import {
+//   Title,
+//   Subtitle,
+//   Description,
+//   Primary,
+//   Controls,
+//   Stories,
+//   Canvas,
+// } from '@storybook/blocks';
+// import Test from './Test.mdx';
 
 import { pkg } from '../../settings';
 import {
@@ -19,7 +29,7 @@ import { AboutModal } from '.';
 
 import { Button, Link } from '@carbon/react';
 
-import mdx from './AboutModal.mdx';
+// import mdx from './AboutModal.mdx';
 
 import ExampleLogo from './_story-assets/example-logo.svg';
 import ansibleLogo from './_story-assets/ansible-logo.png';
@@ -30,12 +40,26 @@ import styles from './_storybook-styles.scss';
 
 const blockClass = `${pkg.prefix}--about-modal`;
 
+import docsPage from './AboutModal.docs-page';
+
+// const docs = {
+//   page: () => <></>,
+// };
+
+// import { docs } from './AboutModal.stories.docs';
+
 export default {
   title: getStoryTitle(AboutModal.displayName),
   component: AboutModal,
+  tags: ['autodocs'],
   parameters: {
     styles,
-    docs: { page: mdx },
+    // docs: {
+    //   page: docsPage,
+    // },
+    docs: {
+      page: docsPage,
+    },
     controls: { sort: 'requiredFirst' },
   },
   argTypes: {
@@ -145,8 +169,10 @@ const logo = (
   />
 );
 
-const Template = (storyName, storyInitiallyOpen, props) => {
-  const [open, setOpen] = useState(storyInitiallyOpen);
+const Template = (storyName, storyInitiallyOpen, props, context) => {
+  const [open, setOpen] = useState(
+    context.viewMode !== 'docs' && storyInitiallyOpen
+  );
   const [beenOpen, setBeenOpen] = useState(false);
   useEffect(() => setBeenOpen(beenOpen || open), [open, beenOpen]);
 

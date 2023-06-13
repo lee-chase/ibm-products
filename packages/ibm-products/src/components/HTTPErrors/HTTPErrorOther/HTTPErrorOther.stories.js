@@ -8,21 +8,24 @@
 import React from 'react';
 import { HTTPErrorOther } from '.';
 import {
+  encaseDocsPageStoryTag,
   getStoryTitle,
   prepareStory,
 } from '../../../global/js/utils/story-helper';
 
-import page from './HTTPErrorOther.mdx';
-// import styles from '../_storybook-styles.scss';
+// import page from './HTTPErrorOther.mdx';
+import styles from '../_storybook-styles.scss';
 
 export default {
   title: getStoryTitle(HTTPErrorOther.displayName),
   component: HTTPErrorOther,
+  tags: ['autodocs', encaseDocsPageStoryTag],
   parameters: {
-    docs: {
-      page,
-    },
-    // styles,
+    layout: 'fullscreen',
+    // docs: {
+    //   page,
+    // },
+    styles,
   },
 };
 

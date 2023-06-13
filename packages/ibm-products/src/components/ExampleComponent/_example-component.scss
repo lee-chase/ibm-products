@@ -14,15 +14,19 @@ $block-class: #{c4p-settings.$pkg-prefix}--example-component;
 
 .#{$block-class} {
   display: flex;
+  width: 392px;
+  box-sizing: content-box;
   justify-content: flex-end;
+  margin: $spacing-04;
   --#{$block-class}--border-color: transparent;
 }
 
-.#{$block-class}.#{$block-class}--boxed-set {
-  border: 10px solid var(--#{$block-class}--border-color);
+.#{$block-class}.#{$block-class}--box {
+  border: $spacing-04 solid var(--#{$block-class}--border-color);
+  margin: 0;
 }
 
-.#{$block-class}.#{$block-class}--shadow-set {
+.#{$block-class}.#{$block-class}--shadow {
   margin: $spacing-04;
   box-shadow: 0 0 10px var(--#{$block-class}--border-color);
 }

@@ -6,7 +6,10 @@
  */
 
 import React, { useState } from 'react';
-import { getStoryTitle } from '../../global/js/utils/story-helper';
+import {
+  getStoryTitle,
+  prepareStory,
+} from '../../global/js/utils/story-helper';
 import { FilterSummary } from '.';
 
 import styles from './_storybook-styles.scss';
@@ -14,13 +17,14 @@ import styles from './_storybook-styles.scss';
 export default {
   title: getStoryTitle(FilterSummary.displayName),
   component: FilterSummary,
+  tags: ['autodocs'],
   parameters: {
     styles,
   },
 };
 
 // eslint-disable-next-line react/prop-types
-export const Default = () => {
+export const Default = prepareStory(() => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [filters, setFilters] = useState([
     { key: 'name', value: 'Thor' },
@@ -39,10 +43,10 @@ export const Default = () => {
       clearFilters={clearFilters}
     />
   );
-};
+}, {});
 
 // eslint-disable-next-line react/prop-types
-export const WithManyTags = () => {
+export const WithManyTags = prepareStory(() => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
 
   const [filters, setFilters] = useState([
@@ -64,4 +68,4 @@ export const WithManyTags = () => {
       clearFilters={clearFilters}
     />
   );
-};
+}, {});

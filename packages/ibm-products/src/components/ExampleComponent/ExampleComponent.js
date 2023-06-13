@@ -39,7 +39,7 @@ export let ExampleComponent = React.forwardRef(
       // The component props, in alphabetical order (for consistency).
 
       borderColor,
-      boxedBorder,
+      borderType,
       className,
       disabled,
       usesExampleHook,
@@ -62,9 +62,7 @@ export let ExampleComponent = React.forwardRef(
       useState(primaryButtonLabel);
     const [exampleUse] = useExample(usesExampleHook);
 
-    const modeClass = boxedBorder
-      ? `${blockClass}--boxed-set`
-      : `${blockClass}--shadow-set`;
+    const modeClass = borderType ? `${blockClass}--${borderType}` : ``;
 
     const handlePrimaryClick = (e) => {
       if (onPrimaryClick) {
@@ -159,9 +157,9 @@ ExampleComponent.propTypes = {
   borderColor: PropTypes.string,
 
   /**
-   * If true, the border is a box, otherwise it is a shadow.
+   * Type of border if any (requires border color)
    */
-  boxedBorder: PropTypes.bool,
+  borderType: PropTypes.oneOf(['none', 'box', 'shadow']),
 
   /**
    * Provide an optional class to be applied to the containing node.
