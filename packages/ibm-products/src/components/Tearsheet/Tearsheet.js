@@ -55,19 +55,21 @@ export let Tearsheet = React.forwardRef(
       ...rest
     },
     ref
-  ) => (
-    <TearsheetShell
-      {...{
-        ...getDevtoolsProps(componentName),
-        ...rest,
-        influencerPosition,
-        influencerWidth,
-        verticalPosition,
-        ref,
-        size: 'wide',
-      }}
-    />
-  )
+  ) => {
+    return (
+      <TearsheetShell
+        {...{
+          ...getDevtoolsProps(componentName),
+          ...rest,
+          influencerPosition,
+          influencerWidth,
+          verticalPosition,
+          ref,
+          size: 'wide',
+        }}
+      />
+    );
+  }
 );
 
 // Return a placeholder if not released and not enabled by feature flag

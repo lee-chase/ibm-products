@@ -4,13 +4,6 @@
 // This source code is licensed under the Apache-2.0 license found in the
 // LICENSE file in the root directory of this source tree.
 //
-
-// Load the C&CS styles first, excluding Carbon styles. We will then load full
-// Carbon styles at the end -- this is to obtain a "worst case" for our own CSS,
-// to ensure we are resilient against different CSS loading orders and our
-// styles have the specificity necessary to override Carbon styles when needed.
-@use '../../ibm-products/src/index-without-carbon' as *;
-
 // Load all Carbon styles now
 @use '../css/carbon';
 // @import '../../security/src/index';

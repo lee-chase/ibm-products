@@ -5,7 +5,8 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-@use '../../global/styles/project-settings' as c4p-settings;
+@use '../../config.scss';
+@use './tearsheet';
 @use '@carbon/styles/scss/spacing' as *;
 
 .tearsheet-stories__dummy-content-block {
@@ -20,6 +21,6 @@
   margin-left: calc(-1 * #{$spacing-05});
 }
 
-.tearsheet-stories__tabs .#{c4p-settings.$carbon-prefix}--tab-content {
+.tearsheet-stories__tabs .#{config.$carbon-prefix}--tab-content {
   display: none;
 }

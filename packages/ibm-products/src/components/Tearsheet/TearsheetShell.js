@@ -29,8 +29,6 @@ import {
 import { ActionSet } from '../ActionSet';
 import { Wrap } from '../../global/js/utils/Wrap';
 
-// The block part of our conventional BEM class names (bc__E--M).
-const bc = `${pkg.prefix}--tearsheet`;
 const componentName = 'TearsheetShell';
 
 const maxDepth = 3;
@@ -93,6 +91,9 @@ export const TearsheetShell = React.forwardRef(
     },
     ref
   ) => {
+    // The block part of our conventional BEM class names (bc__E--M).
+    const bc = `${pkg.prefix}--tearsheet`;
+
     const carbonPrefix = usePrefix();
     const bcModalHeader = `${carbonPrefix}--modal-header`;
     // node the modal tearsheet is hosted in

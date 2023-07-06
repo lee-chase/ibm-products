@@ -38,6 +38,7 @@ import {
 } from '../../global/js/utils/story-helper';
 
 import styles from './_storybook-styles.scss';
+import prefixedStyles from './_prefixed-storybook-styles.scss';
 
 // import mdx from './Tearsheet.mdx';
 
@@ -46,7 +47,12 @@ export default {
   component: Tearsheet,
   tags: ['autodocs'],
   subcomponents: { TearsheetNarrow },
-  parameters: { styles /* docs: { page: mdx } */, layout: 'fullscreen' },
+  parameters: {
+    styles,
+    prefixedStyles,
+    /* docs: { page: mdx } */
+    layout: 'fullscreen',
+  },
   argTypes: {
     ...getDeprecatedArgTypes(deprecatedProps),
     actions: {
@@ -163,8 +169,12 @@ const title = 'Title of the tearsheet';
 
 // Template.
 // eslint-disable-next-line react/prop-types
-const Template = ({ actions, ...args }) => {
+const Template = ({ actions, prefix, ...args }) => {
   const [open, setOpen] = useState(false);
+
+  if (prefix) {
+    pkg.prefix = prefix;
+  }
 
   const wiredActions =
     actions &&
@@ -416,4 +426,18 @@ export const stacked = prepareStory(StackedTemplate, {
     label,
     actions: 7,
   },
+});
+
+export const tearsheetUnstyled = prepareStory(Template, {
+  storyName: 'Tearsheet unstyled',
+  args: {
+    closeIconDescription,
+    description,
+    onClose: action('onClose called'),
+    title,
+    actions: 7,
+    selectorPrimaryFocus: '#tss-ft1',
+    prefix: 'prefix-test', // must match prefixed styles
+  },
+  tags: ['use-prefixed-styles'],
 });

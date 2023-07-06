@@ -18,7 +18,8 @@ import React, { useEffect } from 'react';
 
 import { pkg } from '../../ibm-products/src/settings';
 
-import index from './index.scss';
+import globalStyles from './index.scss';
+
 import { getSectionSequence } from '../story-structure';
 import { StoryDocsPage } from '../../ibm-products/src/global/js/utils/StoryDocsPage';
 
@@ -26,27 +27,40 @@ import { StoryDocsPage } from '../../ibm-products/src/global/js/utils/StoryDocsP
 pkg._silenceWarnings(true);
 pkg.setAllComponents(true);
 
-const Style = ({ children, styles }) => {
-  const { unuse, use } = styles;
-
+const Style = ({ children, c4pStyles, styles }) => {
   useEffect(() => {
-    use();
+    // Load @carbon/ibm-products styles first, excluding Carbon styles. We will then load full
+    // Carbon styles at the end -- this is to obtain a "worst case" for our own CSS,
+    // to ensure we are resilient against different CSS loading orders and our
+    // styles have the specificity necessary to override Carbon styles when needed.
+    c4pStyles.use();
 
-    return () => unuse();
+    styles.use();
+
+    return () => {
+      c4pStyles.unuse();
+      styles.unuse();
+    };
   }, []);
 
   return children;
 };
 
 const decorators = [
-  (storyFn, { args, parameters: { styles } }) => {
+  (
+    storyFn,
+    { args, parameters: { prefixedStyles, styles: storyStyles }, tags }
+  ) => {
     const story = storyFn();
 
-    JSON.stringify(args.featureFlags);
+    const c4pStyles = tags.includes('use-prefixed-styles')
+      ? prefixedStyles
+      : storyStyles;
 
     return (
       <div className="preview-position-fix">
-        <Style styles={index}>
+        {/* load c4p styles before global */}
+        <Style c4pStyles={c4pStyles} styles={globalStyles}>
           {args.featureFlags ? (
             <ActionableNotification
               className="preview__notification--feature-flag"
@@ -71,7 +85,7 @@ const decorators = [
               </UnorderedList>
             </ActionableNotification>
           ) : null}
-          {styles ? <Style styles={styles}>{story}</Style> : story}
+          {story}
         </Style>
       </div>
     );

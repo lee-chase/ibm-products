@@ -1,0 +1,10 @@
+// $pkg-prefix: 'test'; // does not work
+
+// @use '../../global/styles/project-settings' with (
+//   $pkg-prefix: 'test'
+// );
+
+@use '../../config.scss' with (
+  $pkg-prefix: 'prefix-test'
+);
+@use './storybook-styles';

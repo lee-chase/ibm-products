@@ -17,7 +17,6 @@ import { allPropTypes } from '../../global/js/utils/props-helper';
 // Carbon and package components we use.
 import { Button, ButtonSet, InlineLoading } from '@carbon/react';
 
-const blockClass = `${pkg.prefix}--action-set`;
 const componentName = 'ActionSet';
 
 // NOTE: the component SCSS is not imported here: it is rolled up separately.
@@ -36,28 +35,32 @@ const ActionSetButton = React.forwardRef(
       ...rest
     },
     ref
-  ) => (
-    <Button
-      {
-        // Pass through any other property values as HTML attributes.
-        ...rest
-      }
-      isExpressive={isExpressive}
-      className={cx(className, [
-        `${blockClass}__action-button`,
+  ) => {
+    const blockClass = `${pkg.prefix}--action-set`;
+
+    return (
+      <Button
         {
-          [`${blockClass}__action-button--ghost`]:
-            kind === 'ghost' || kind === 'danger--ghost',
-          [`${blockClass}__action-button--expressive`]: isExpressive,
-        },
-      ])}
-      disabled={disabled || loading || false}
-      {...{ kind, ref }}
-    >
-      {label}
-      {loading && <InlineLoading />}
-    </Button>
-  )
+          // Pass through any other property values as HTML attributes.
+          ...rest
+        }
+        isExpressive={isExpressive}
+        className={cx(className, [
+          `${blockClass}__action-button`,
+          {
+            [`${blockClass}__action-button--ghost`]:
+              kind === 'ghost' || kind === 'danger--ghost',
+            [`${blockClass}__action-button--expressive`]: isExpressive,
+          },
+        ])}
+        disabled={disabled || loading || false}
+        {...{ kind, ref }}
+      >
+        {label}
+        {loading && <InlineLoading />}
+      </Button>
+    );
+  }
 );
 
 ActionSetButton.displayName = 'ActionSetButton';
@@ -112,6 +115,7 @@ export const ActionSet = React.forwardRef(
     },
     ref
   ) => {
+    const blockClass = `${pkg.prefix}--action-set`;
     const buttons = (actions && actions.slice?.(0)) || [];
 
     // We stack the buttons in a sm set, or if there are three or more in a md set.
