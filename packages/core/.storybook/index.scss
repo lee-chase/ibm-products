@@ -5,14 +5,8 @@
 // LICENSE file in the root directory of this source tree.
 //
 
-// Load the C&CS styles first, excluding Carbon styles. We will then load full
-// Carbon styles at the end -- this is to obtain a "worst case" for our own CSS,
-// to ensure we are resilient against different CSS loading orders and our
-// styles have the specificity necessary to override Carbon styles when needed.
-@use '../../ibm-products/src/index-without-carbon.scss';
+// @use '../../ibm-products/src/config.scss' as c4pConfig;
 
-// Load all Carbon styles now
-@use '../css/carbon';
 // @import '../../security/src/index';
 // @import 'docs';
 @use '@carbon/styles' as styles;

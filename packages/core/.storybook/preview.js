@@ -19,7 +19,7 @@ import React, { useEffect } from 'react';
 import { pkg } from '../../ibm-products/src/settings';
 
 import index from './index.scss';
-import prefixedIndex from './_prefix-index.scss';
+import prefix from './_prefix.scss';
 import { getSectionSequence } from '../story-structure';
 import { StoryDocsPage } from '../../ibm-products/src/global/js/utils/StoryDocsPage';
 
@@ -27,33 +27,46 @@ import { StoryDocsPage } from '../../ibm-products/src/global/js/utils/StoryDocsP
 pkg._silenceWarnings(true);
 pkg.setAllComponents(true);
 
-const Style = ({ children, styles }) => {
-  const { unuse, use } = styles;
-
-  useEffect(() => {
-    use();
-
-    return () => unuse();
-  }, []);
-
-  return children;
-};
-
 let isDev = CONFIG_TYPE === 'DEVELOPMENT'; //  process.env?.NODE_ENV === 'development';
 if (isDev) {
   // use a prefix in all development storybook
   pkg.prefix = `dev-prefix--${pkg.prefix}`;
 }
 
+const Style = ({ children, c4pStyles, styles }) => {
+  useEffect(() => {
+    if (isDev) {
+      console.log('hi');
+      prefix.use(c4pStyles.use());
+    }
+    // Load @carbon/ibm-products styles first, excluding Carbon styles. We will then load full
+    // Carbon styles at the end -- this is to obtain a "worst case" for our own CSS,
+    // to ensure we are resilient against different CSS loading orders and our
+    // styles have the specificity necessary to override Carbon styles when needed.
+    // c4pStyles.use({ '$pkg-prefix': 'wibble ' });
+    styles.use();
+
+    return () => {
+      if (isDev) {
+        prefix.unuse();
+      }
+      // c4pStyles.unuse();
+      styles.unuse();
+    };
+  }, []);
+
+  return children;
+};
+
 const decorators = [
-  (storyFn, { args, parameters: { styles } }) => {
+  (storyFn, { args, parameters: { prefixedStyles, styles: storyStyles } }) => {
     const story = storyFn();
 
-    JSON.stringify(args.featureFlags);
-
+    const c4pStyles = storyStyles; // isDev ? prefixedStyles : storyStyles;
     return (
       <div className="preview-position-fix">
-        <Style styles={isDev ? prefixedIndex : index}>
+        {/* load c4p styles before global */}
+        <Style c4pStyles={c4pStyles} styles={index}>
           {args.featureFlags ? (
             <ActionableNotification
               className="preview__notification--feature-flag"
@@ -78,7 +91,7 @@ const decorators = [
               </UnorderedList>
             </ActionableNotification>
           ) : null}
-          {styles ? <Style styles={styles}>{story}</Style> : story}
+          {story}
         </Style>
       </div>
     );

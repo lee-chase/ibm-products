@@ -38,15 +38,27 @@ import {
 } from '../../global/js/utils/story-helper';
 
 import styles from './_storybook-styles.scss';
+import prefixedStyles from './_prefixed-storybook-styles.scss';
 
 // import mdx from './Tearsheet.mdx';
+
+// let isDev = CONFIG_TYPE === 'DEVELOPMENT'; //  process.env?.NODE_ENV === 'development';
+// if (isDev) {
+//   // use a prefix in all development storybook
+
+//   pkg.prefix = `dev-prefix--${pkg.prefix}`;
+// }
 
 export default {
   title: getStoryTitle(Tearsheet.displayName),
   component: Tearsheet,
   tags: ['autodocs'],
   subcomponents: { TearsheetNarrow },
-  parameters: { styles /* docs: { page: mdx } */, layout: 'fullscreen' },
+  parameters: {
+    styles,
+    prefixedStyles,
+    /* docs: { page: mdx } */ layout: 'fullscreen',
+  },
   argTypes: {
     ...getDeprecatedArgTypes(deprecatedProps),
     actions: {
