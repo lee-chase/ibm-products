@@ -36,14 +36,12 @@ if (isDev) {
 const Style = ({ children, c4pStyles, styles }) => {
   useEffect(() => {
     if (isDev) {
-      console.log('hi');
       prefix.use(c4pStyles.use());
     }
     // Load @carbon/ibm-products styles first, excluding Carbon styles. We will then load full
     // Carbon styles at the end -- this is to obtain a "worst case" for our own CSS,
     // to ensure we are resilient against different CSS loading orders and our
     // styles have the specificity necessary to override Carbon styles when needed.
-    // c4pStyles.use({ '$pkg-prefix': 'wibble ' });
     styles.use();
 
     return () => {
