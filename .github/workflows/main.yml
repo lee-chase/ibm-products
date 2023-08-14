@@ -9,5 +9,5 @@ jobs:
 
     steps:
       - name: test npm access
-        run: npm pkg get version --workspaces=false
+        run: bash test.sh
 
