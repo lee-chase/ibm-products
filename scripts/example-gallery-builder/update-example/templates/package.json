@@ -1,12 +1,12 @@
 {
-  "name": "STYLE_NAME-component-example",
+  "name": "DISPLAY_NAME-component-example",
   "description": "An example showing use of the AboutModal component from the @carbon/ibm-products component library.",
   "keywords": [
     "carbon",
     "ibm",
     "ibm-products",
     "component",
-    "DISPLAY_NAME"
+    "KEYWORDS"
   ],
   "license": "Apache-2.0",
   "type": "module",

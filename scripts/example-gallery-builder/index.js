@@ -71,6 +71,7 @@ const updateGalleryConfig = () => {
   writeGalleryTests(examplesTestFile, directories);
 
   // update each example
+  // updateExample(directories[0]); // test
   directories.forEach((dir) => updateExample(dir));
 };
 

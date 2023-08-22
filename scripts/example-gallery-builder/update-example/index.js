@@ -39,6 +39,11 @@ const updateExample = (name) => {
       STYLE_NAME: paramCase(name),
     };
 
+    substitutions.KEYWORDS = [
+      substitutions.DISPLAY_NAME.toLowerCase(), //lower case component name
+      ...substitutions.STYLE_NAME.split('-'), // parts of component name
+    ].join('",\n\t\t"');
+
     const examplePath = join(
       'examples',
       'carbon-for-ibm-products',
@@ -58,7 +63,7 @@ const updateExample = (name) => {
       const doKeep = keep.test(file);
 
       if (!doKeep) {
-        // removeSync(file);
+        removeSync(file);
       }
     });
 
