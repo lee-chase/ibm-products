@@ -68,11 +68,10 @@ const updateExample = (name) => {
       const relativeDir = relative(templatePath, dirname(template));
       const newPath = join(examplePath, relativeDir, newFilename);
 
-      console.log(newPath);
-      // if (isFile(template)) {
-      //   const data = compile(readFileSync(template, 'utf8'), substitutions);
-      //   outputFileSync(newPath, data);
-      // }
+      if (isFile(template)) {
+        const data = compile(readFileSync(template, 'utf8'), substitutions);
+        outputFileSync(newPath, data);
+      }
     });
   }
 };
