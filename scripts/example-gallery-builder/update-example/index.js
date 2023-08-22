@@ -50,11 +50,7 @@ const updateExample = (name) => {
       substitutions.KEYWORDS = substitutions.STYLE_NAME;
     }
 
-    const examplePath = join(
-      'examples',
-      'carbon-for-ibm-products',
-      substitutions.DISPLAY_NAME
-    );
+    const examplePath = join('examples', 'carbon-for-ibm-products', name);
 
     const rootPath = process.cwd(); // join(__dirname, '../..');
 
@@ -69,7 +65,7 @@ const updateExample = (name) => {
       const doKeep = keep.test(file);
 
       if (!doKeep) {
-        removeSync(file);
+        // removeSync(file);
       }
     });
 
@@ -79,9 +75,10 @@ const updateExample = (name) => {
       const relativeDir = relative(templatePath, dirname(template));
       const newPath = join(examplePath, relativeDir, newFilename);
 
+      console.log(newPath, relativeDir, newFilename, template);
       if (isFile(template)) {
         const data = compile(readFileSync(template, 'utf8'), substitutions);
-        outputFileSync(newPath, data);
+        // outputFileSync(newPath, data);
       }
     });
   }
