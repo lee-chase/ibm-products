@@ -29,7 +29,6 @@
     "format:prettier": "yarn format:prettier:files '**/*.{js,md,mdx,scss,ts}' '!**/{build,es,lib,storybook,ts,umd,coverage}/**'",
     "format:prettier:files": "prettier",
     "generate": "lerna run generate --loglevel success --scope \"@carbon/ibm-products\" --",
-    "generate-example": "yarn dlx cross-env FORCE_COLOR=1 node scripts/generate-examples",
     "lint": "run-p -s 'lint:*' spellcheck",
     "lint:es": "yarn lint:es:files 'packages/*/src/**/*.js'",
     "lint:es:c4p": "yarn lint:es:files 'packages/ibm-products/src/**/*.js' --ignore-pattern '!examples/carbon-for-ibm-products/**/*.scss'",
