@@ -39,10 +39,16 @@ const updateExample = (name) => {
       STYLE_NAME: paramCase(name),
     };
 
-    substitutions.KEYWORDS = [
-      substitutions.DISPLAY_NAME.toLowerCase(), //lower case component name
-      ...substitutions.STYLE_NAME.split('-'), // parts of component name
-    ].join('",\n\t\t"');
+    const keywords = substitutions.STYLE_NAME.split('-');
+
+    if (keywords.length > 1) {
+      substitutions.KEYWORDS = [
+        substitutions.DISPLAY_NAME.toLowerCase(), //lower case component name
+        ...keywords, // parts of component name
+      ].join('",\n\t\t"');
+    } else {
+      substitutions.KEYWORDS = substitutions.STYLE_NAME;
+    }
 
     const examplePath = join(
       'examples',
