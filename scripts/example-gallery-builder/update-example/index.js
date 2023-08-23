@@ -52,6 +52,19 @@ const updateExample = (name, config) => {
       substitutions.KEYWORDS = substitutions.STYLE_NAME;
     }
 
+    const pkgConfig = config['package-config'];
+
+    substitutions.IMPORT_IBM_PRODUCTS_CONFIG = pkgConfig
+      ? (substitutions.IMPORT_IBM_PRODUCTS_CONFIG =
+          "import './ibm-products-config'\n")
+      : '';
+
+    substitutions.IMPORT_IBM_PRODUCTS_STYLES = pkgConfig?.prefix
+      ? `@use "@carbon/ibm-products/scss" with (
+  $pkg-prefix: "${pkgConfig.prefix}"
+);`
+      : '@use "@carbon/ibm-products/scss";';
+
     const examplePath = join('examples', 'carbon-for-ibm-products', name);
 
     const rootPath = process.cwd(); // join(__dirname, '../..');
