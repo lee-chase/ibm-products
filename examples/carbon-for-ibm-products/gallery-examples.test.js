@@ -28,10 +28,7 @@ import { Example as ImportModalExample } from './ImportModal/src/Example/Example
 import { Example as NotificationsPanelExample } from './NotificationsPanel/src/Example/Example';
 import { Example as OptionsTileExample } from './OptionsTile/src/Example/Example';
 import { Example as PageHeaderExample } from './PageHeader/src/Example/Example';
-import { Example as PrefixExampleExample } from './PrefixExample/src/Example/Example';
 import { Example as ProductiveCardExample } from './ProductiveCard/src/Example/Example';
-import { Example as React16ExampleExample } from './React_16Example/src/Example/Example';
-import { Example as React17ExampleExample } from './React_17Example/src/Example/Example';
 import { Example as RemoveModalExample } from './RemoveModal/src/Example/Example';
 import { Example as SavingExample } from './Saving/src/Example/Example';
 import { Example as SidePanelExample } from './SidePanel/src/Example/Example';
@@ -161,26 +158,8 @@ describe('All examples', () => {
     expect(console.error).not.toHaveBeenCalled();
   });
 
-  it('PrefixExample renders', () => {
-    render(<PrefixExampleExample />);
-    // expect no errors int the console
-    expect(console.error).not.toHaveBeenCalled();
-  });
-
   it('ProductiveCard renders', () => {
     render(<ProductiveCardExample />);
-    // expect no errors int the console
-    expect(console.error).not.toHaveBeenCalled();
-  });
-
-  it('React16Example renders', () => {
-    render(<React16ExampleExample />);
-    // expect no errors int the console
-    expect(console.error).not.toHaveBeenCalled();
-  });
-
-  it('React17Example renders', () => {
-    render(<React17ExampleExample />);
     // expect no errors int the console
     expect(console.error).not.toHaveBeenCalled();
   });
