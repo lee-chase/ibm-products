@@ -60,10 +60,17 @@ const updateExample = (name, config) => {
       : '';
 
     substitutions.IMPORT_IBM_PRODUCTS_STYLES = pkgConfig?.prefix
-      ? `@use "@carbon/ibm-products/scss" with (
+      ? `// You can @use the css but that does not permit setting of a prefix
+// @use '@carbon/ibm-products/css/index';
+
+// setting a prefix must happen before other @use of @carbon/ibm-products and in conjunction with
+// the equivalent javascript configuration.
+// See https://github.com/carbon-design-system/ibm-products/blob/main/packages/ibm-products/README.md#package-prefix
+
+@use "@carbon/ibm-products/scss" with (
   $pkg-prefix: "${pkgConfig.prefix}"
 );`
-      : '@use "@carbon/ibm-products/scss";';
+      : `@use '@carbon/ibm-products/css/index';`;
 
     const examplePath = join('examples', 'carbon-for-ibm-products', name);
 
