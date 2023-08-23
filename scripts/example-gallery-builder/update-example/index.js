@@ -29,7 +29,9 @@ const isFile = (path) => fs.existsSync(path) && fs.lstatSync(path).isFile();
 // - package.json
 // - gallery.config.json
 
-const updateExample = (name) => {
+const updateExample = (name, config) => {
+  const reactVersion = config['react-version'];
+
   if (name) {
     const substitutions = {
       DISPLAY_NAME: pascalCase(name),
@@ -65,7 +67,7 @@ const updateExample = (name) => {
       const doKeep = keep.test(file);
 
       if (!doKeep) {
-        // removeSync(file);
+        removeSync(file);
       }
     });
 
@@ -75,10 +77,22 @@ const updateExample = (name) => {
       const relativeDir = relative(templatePath, dirname(template));
       const newPath = join(examplePath, relativeDir, newFilename);
 
-      console.log(newPath, relativeDir, newFilename, template);
       if (isFile(template)) {
-        const data = compile(readFileSync(template, 'utf8'), substitutions);
-        // outputFileSync(newPath, data);
+        let altTemplate;
+
+        if (reactVersion) {
+          altTemplate = join(
+            templatePath,
+            `../templates-react-${reactVersion}`,
+            newFilename
+          );
+        }
+
+        const readTemplate =
+          altTemplate && fs.existsSync(altTemplate) ? altTemplate : template;
+
+        const data = compile(readFileSync(readTemplate, 'utf8'), substitutions);
+        outputFileSync(newPath, data);
       }
     });
   }

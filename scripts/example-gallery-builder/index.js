@@ -71,8 +71,10 @@ const updateGalleryConfig = () => {
   writeGalleryTests(examplesTestFile, directories);
 
   // update each example
-  // updateExample(directories[0]); // test
-  directories.forEach((dir) => updateExample(dir));
+  directories.forEach((dir) => {
+    const config = mergedConfig.find((item) => item.directory === dir);
+    updateExample(dir, config);
+  });
 };
 
 updateGalleryConfig();
