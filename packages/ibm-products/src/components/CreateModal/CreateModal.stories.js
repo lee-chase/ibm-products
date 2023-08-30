@@ -29,6 +29,7 @@ import { CreateModal } from '.';
 
 import styles from './_storybook-styles.scss';
 import DocsPage from './CreateModal.docs-page';
+import { StoryDocumentBodyPortal } from '../../global/js/utils/StoryDocumentBodyPortal';
 
 export default {
   title: getStoryTitle(CreateModal.displayName),
@@ -61,14 +62,18 @@ const Template = (
       <Button onClick={() => setOpen(true)}>Open {story?.storyName}</Button>
 
       <style>{`.${pkg.prefix}--create-modal { opacity: 0 }`};</style>
-      <CreateModal
-        open={open}
-        onRequestClose={() => setOpen(false)}
-        {...args}
-        selectorPrimaryFocus={`.${carbonPrefix}--text-input`}
-      >
-        {children}
-      </CreateModal>
+      <StoryDocumentBodyPortal>
+        {() => (
+          <CreateModal
+            open={open}
+            onRequestClose={() => setOpen(false)}
+            {...args}
+            selectorPrimaryFocus={`.${carbonPrefix}--text-input`}
+          >
+            {children}
+          </CreateModal>
+        )}
+      </StoryDocumentBodyPortal>
     </>
   );
 };
@@ -87,50 +92,54 @@ const TemplateWithFormValidation = ({
     <>
       <Button onClick={() => setOpen(true)}>Open {story?.storyName}</Button>
       <style>{`.${pkg.prefix}--create-modal { opacity: 0 }`};</style>
-      <CreateModal
-        {...args}
-        open={open}
-        onRequestClose={() => setOpen(false)}
-        disableSubmit={textInput.length === 0 ? true : false}
-        selectorPrimaryFocus={`.${carbonPrefix}--text-input`}
-      >
-        <TextInput
-          id="1"
-          key="form-field-1"
-          labelText="Text input label"
-          placeholder="Placeholder"
-          onChange={(e) => {
-            setTextInput(e.target.value);
-            setInvalid(false);
-          }}
-          onBlur={() => {
-            textInput.length === 0 && setInvalid(true);
-          }}
-          invalid={invalid}
-          invalidText="This is a required field"
-        />
-        <TextInput
-          id="2"
-          key="form-field-2"
-          labelText="Text input label (optional)"
-          placeholder="Placeholder"
-        />
-        <TextInput
-          id="3"
-          key="form-field-3"
-          labelText="Text input label (optional)"
-          placeholder="Placeholder"
-        />
-        <RadioButtonGroup
-          legendText="Radio button legend text goes here"
-          name="radio-button-group"
-          defaultSelected="radio-1"
-        >
-          <RadioButton labelText="Radio-1" value="radio-1" id="radio-1" />
-          <RadioButton labelText="Radio-2" value="radio-2" id="radio-2" />
-          <RadioButton labelText="Radio-3" value="radio-3" id="radio-3" />
-        </RadioButtonGroup>
-      </CreateModal>
+      <StoryDocumentBodyPortal>
+        {() => (
+          <CreateModal
+            {...args}
+            open={open}
+            onRequestClose={() => setOpen(false)}
+            disableSubmit={textInput.length === 0 ? true : false}
+            selectorPrimaryFocus={`.${carbonPrefix}--text-input`}
+          >
+            <TextInput
+              id="1"
+              key="form-field-1"
+              labelText="Text input label"
+              placeholder="Placeholder"
+              onChange={(e) => {
+                setTextInput(e.target.value);
+                setInvalid(false);
+              }}
+              onBlur={() => {
+                textInput.length === 0 && setInvalid(true);
+              }}
+              invalid={invalid}
+              invalidText="This is a required field"
+            />
+            <TextInput
+              id="2"
+              key="form-field-2"
+              labelText="Text input label (optional)"
+              placeholder="Placeholder"
+            />
+            <TextInput
+              id="3"
+              key="form-field-3"
+              labelText="Text input label (optional)"
+              placeholder="Placeholder"
+            />
+            <RadioButtonGroup
+              legendText="Radio button legend text goes here"
+              name="radio-button-group"
+              defaultSelected="radio-1"
+            >
+              <RadioButton labelText="Radio-1" value="radio-1" id="radio-1" />
+              <RadioButton labelText="Radio-2" value="radio-2" id="radio-2" />
+              <RadioButton labelText="Radio-3" value="radio-3" id="radio-3" />
+            </RadioButtonGroup>
+          </CreateModal>
+        )}
+      </StoryDocumentBodyPortal>
     </>
   );
 };

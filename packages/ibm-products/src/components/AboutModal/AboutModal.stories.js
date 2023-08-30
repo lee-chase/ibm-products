@@ -7,7 +7,7 @@
 
 // cspell:words grafana
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { pkg } from '../../settings';
 import {
@@ -29,6 +29,7 @@ import styles from './_storybook-styles.scss';
 const blockClass = `${pkg.prefix}--about-modal`;
 
 import DocsPage from './AboutModal.docs-page';
+import { StoryDocumentBodyPortal } from '../../global/js/utils/StoryDocumentBodyPortal';
 
 export default {
   title: getStoryTitle(AboutModal.displayName),
@@ -162,13 +163,17 @@ const Template = (storyName, storyInitiallyOpen, props, context) => {
       </Button>
 
       <style>{`.${blockClass} { opacity: 0; }`};</style>
-      <AboutModal
-        {...props}
-        onClose={() => setOpen(false)}
-        logo={logo}
-        modalAriaLabel="About this product"
-        open={open}
-      />
+      <StoryDocumentBodyPortal>
+        {() => (
+          <AboutModal
+            {...props}
+            onClose={() => setOpen(false)}
+            logo={logo}
+            modalAriaLabel="About this product"
+            open={open}
+          />
+        )}
+      </StoryDocumentBodyPortal>
     </>
   );
 };

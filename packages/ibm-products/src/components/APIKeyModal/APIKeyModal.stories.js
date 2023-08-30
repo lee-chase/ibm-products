@@ -26,6 +26,7 @@ import { APIKeyModal } from '.';
 import wait from '../../global/js/utils/wait';
 import styles from './_storybook-styles.scss'; // import index in case more files are added later.
 import DocsPage from './APIKeyModal.docs-page';
+import { StoryDocumentBodyPortal } from '../../global/js/utils/StoryDocumentBodyPortal';
 
 export default {
   title: getStoryTitle(APIKeyModal.displayName),
@@ -80,7 +81,11 @@ const InstantTemplate = (args) => {
   return (
     <>
       <style>{`.${blockClass} { opacity: 0; }`};</style>
-      <APIKeyModal {...args} onClose={() => setOpen(false)} open={open} />
+      <StoryDocumentBodyPortal>
+        {() => (
+          <APIKeyModal {...args} onClose={() => setOpen(false)} open={open} />
+        )}
+      </StoryDocumentBodyPortal>
       {loading ? (
         <Button
           renderIcon={InlineLoading}
@@ -124,15 +129,19 @@ const TemplateWithState = (args) => {
   return (
     <>
       <style>{`.${blockClass} { opacity: 0; }`};</style>
-      <APIKeyModal
-        {...args}
-        apiKey={apiKey}
-        loading={loading}
-        onClose={onCloseHandler}
-        onRequestGenerate={submitHandler}
-        open={open}
-        error={fetchError}
-      />
+      <StoryDocumentBodyPortal>
+        {() => (
+          <APIKeyModal
+            {...args}
+            apiKey={apiKey}
+            loading={loading}
+            onClose={onCloseHandler}
+            onRequestGenerate={submitHandler}
+            open={open}
+            error={fetchError}
+          />
+        )}
+      </StoryDocumentBodyPortal>
       <Button onClick={() => setOpen(!open)}>Generate API key</Button>
     </>
   );
@@ -283,18 +292,22 @@ const MultiStepTemplate = (args) => {
   return (
     <>
       <style>{`.${blockClass} { opacity: 0; }`};</style>
-      <APIKeyModal
-        {...finalArgs}
-        apiKey={apiKey}
-        loading={loading}
-        onClose={onCloseHandler}
-        onRequestEdit={submitHandler}
-        onRequestGenerate={submitHandler}
-        open={open}
-        customSteps={steps}
-        nameRequired={false}
-        editSuccess={editSuccess}
-      />
+      <StoryDocumentBodyPortal>
+        {() => (
+          <APIKeyModal
+            {...finalArgs}
+            apiKey={apiKey}
+            loading={loading}
+            onClose={onCloseHandler}
+            onRequestEdit={submitHandler}
+            onRequestGenerate={submitHandler}
+            open={open}
+            customSteps={steps}
+            nameRequired={false}
+            editSuccess={editSuccess}
+          />
+        )}
+      </StoryDocumentBodyPortal>
       <Button onClick={() => setOpen(!open)}>
         {editing ? 'Edit API key' : 'Generate API key'}
       </Button>
@@ -333,15 +346,19 @@ const EditTemplate = (args) => {
   return (
     <>
       <style>{`.${blockClass} { opacity: 0; }`};</style>
-      <APIKeyModal
-        {...args}
-        loading={loading}
-        onClose={onCloseHandler}
-        onRequestEdit={submitHandler}
-        open={open}
-        error={fetchError}
-        editSuccess={fetchSuccess}
-      />
+      <StoryDocumentBodyPortal>
+        {() => (
+          <APIKeyModal
+            {...args}
+            loading={loading}
+            onClose={onCloseHandler}
+            onRequestEdit={submitHandler}
+            open={open}
+            error={fetchError}
+            editSuccess={fetchSuccess}
+          />
+        )}
+      </StoryDocumentBodyPortal>
       <Button onClick={onOpenHandler}>Edit API key</Button>
     </>
   );

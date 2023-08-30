@@ -16,6 +16,7 @@ import { ExportModal } from '.';
 // import mdx from './ExportModal.mdx';
 import wait from '../../global/js/utils/wait';
 import { StoryDocsPage } from '../../global/js/utils/StoryDocsPage';
+import { StoryDocumentBodyPortal } from '../../global/js/utils/StoryDocumentBodyPortal';
 
 export default {
   title: getStoryTitle(ExportModal.displayName),
@@ -85,18 +86,22 @@ const Template = ({ storyInitiallyOpen = false, ...args }, context) => {
 
   return (
     <>
-      <ExportModal
-        {...args}
-        open={open}
-        onClose={onCloseHandler}
-        onRequestSubmit={onSubmitHandler}
-        loading={loading}
-        successful={successful}
-        loadingMessage="Exporting file..."
-        successMessage="The file has been exported."
-        error={error}
-        errorMessage="Server error 500"
-      />
+      <StoryDocumentBodyPortal>
+        {() => (
+          <ExportModal
+            {...args}
+            open={open}
+            onClose={onCloseHandler}
+            onRequestSubmit={onSubmitHandler}
+            loading={loading}
+            successful={successful}
+            loadingMessage="Exporting file..."
+            successMessage="The file has been exported."
+            error={error}
+            errorMessage="Server error 500"
+          />
+        )}
+      </StoryDocumentBodyPortal>
       <Button onClick={() => setOpen(true)}>Launch modal</Button>
     </>
   );
