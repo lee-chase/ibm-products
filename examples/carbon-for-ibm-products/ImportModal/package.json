@@ -1,12 +1,14 @@
 {
-  "name": "import-modal-component-example",
-  "description": "An example showing use of the import-modal component from the @carbon/ibm-products component library.",
+  "name": "ImportModal-component-example",
+  "description": "An example showing use of the ImportModal component from the @carbon/ibm-products component library.",
   "keywords": [
     "carbon",
     "ibm",
     "ibm-products",
     "component",
-    "import-modal"
+    "importmodal",
+		"import",
+		"modal"
   ],
   "license": "Apache-2.0",
   "type": "module",
