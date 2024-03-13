@@ -6,5 +6,5 @@
  */
 
 export { Toolbar } from './Toolbar';
-export { ToolbarButton } from './ToolbarButton';
+export { ToolbarButton } from './ToolbarButton.tsx';
 export { ToolbarGroup } from './ToolbarGroup';

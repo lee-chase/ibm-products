@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-import App from './App.jsx';
+// import App from './App.jsx';
 
 import styles from './_storybook-styles.scss';
 
@@ -18,10 +18,10 @@ export default {
   },
 };
 
-export const c4pGalleryCodeSandbox = () => <App site="codesandbox" />;
+export const c4pGalleryCodeSandbox = () => <div site="codesandbox" />;
 c4pGalleryCodeSandbox.storyName = 'on CodeSandbox';
 c4pGalleryCodeSandbox.parameters = { options: { showPanel: false } };
 
-export const c4pGalleryStackblitz = () => <App site="stackblitz" />;
-c4pGalleryStackblitz.storyName = 'on Stackblitz';
-c4pGalleryStackblitz.parameters = { options: { showPanel: false } };
+// export const c4pGalleryStackblitz = () => <App site="stackblitz" />;
+// c4pGalleryStackblitz.storyName = 'on Stackblitz';
+// c4pGalleryStackblitz.parameters = { options: { showPanel: false } };

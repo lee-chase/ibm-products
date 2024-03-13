@@ -1,1 +1,1 @@
-export { Cascade } from './Cascade';
+export { Cascade } from './Cascade.tsx';
