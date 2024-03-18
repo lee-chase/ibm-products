@@ -7,4 +7,4 @@
 
 // NOTE: An index file is most useful when you have multiple components
 
-export { CreateModal } from './CreateModal';
+export { CreateModal } from './CreateModal.tsx';
